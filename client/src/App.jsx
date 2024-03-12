@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
-import './App.css'
+import Layout from './components/layout/Layout';
+import './styles/App.css';
 
 function App() {
 
   return (
-    <>
-      App.jsx
-    </>
+    <Layout>
+      <h1>Ecommerce App</h1>
+    </Layout>
   )
 }
 
