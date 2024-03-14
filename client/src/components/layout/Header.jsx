@@ -36,20 +36,20 @@ const Header = () => {
 
       <div className="nav_items hidden md:block">
         <ul className='flex flex-row items-center'>
-          <li>
+          {/* <li>
             <Link className='border-[#149EDC] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/">Home</Link>
+          </li> */}
+          <li>
+            <Link className='border-[#FFD230] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/about">About</Link>
           </li>
           <li>
-            <Link className='border-[#FFD230] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/news">News</Link>
+            <Link className='border-[#FA6400] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/product">Products</Link>
           </li>
           <li>
-            <Link className='border-[#FA6400] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/business">Business</Link>
+            <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/category">Category</Link>
           </li>
           <li>
-            <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/sports">Sports</Link>
-          </li>
-          <li>
-            <Link className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/world">World</Link>
+            <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
           </li>
           {/* {
             user.role === "author" ?
@@ -73,22 +73,22 @@ const Header = () => {
       </div>
 
       {/* Mobile navbar */}
-      <div className={!nav ? "hidden" : "nav_items absolute top-14 right-0  block md:hidden bg-black text-white w-full h-[190px] box-border z-50"}>
-        <ul className='grid gap-5 my-3 grid-cols-2 place-items-center'>
+      <div className={!nav ? "hidden" : "nav_items absolute top-14 right-0  block md:hidden bg-black text-white w-full h-[220px] box-border z-50"}>
+        <ul className='my-3 flex flex-col gap-4 items-center justify-evenly'>
           <li>
             <Link onClick={handleClick} className='active:border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/">Home</Link>
           </li>
           <li>
-            <Link onClick={handleClick} className='border-[#FFD230] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/news">News</Link>
+            <Link onClick={handleClick} className='border-[#FFD230] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/about">About</Link>
           </li>
           <li>
-            <Link onClick={handleClick} className='border-[#149EDC] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/business">Business</Link>
+            <Link onClick={handleClick} className='border-[#149EDC] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/category">Category</Link>
           </li>
           <li>
-            <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/sports">Sports</Link>
+            <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/products">Products</Link>
           </li>
           <li>
-            <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/world">World</Link>
+            <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
           </li>
           {/* {
             user.role === "author" ?

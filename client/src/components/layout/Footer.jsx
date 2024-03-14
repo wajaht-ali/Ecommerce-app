@@ -4,12 +4,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebookSquare, FaTwitterSquare, FaInstagramSquare, FaYoutubeSquare } from 'react-icons/fa';
 
-import img from "https://www.bing.com/images/search?view=detailV2&ccid=Kp64As5h&id=D1080EB37853501FBA6BF271695CAF18908DE892&thid=OIP.Kp64As5hzlSiyL8IUw3jpgHaHa&mediaurl=https%3a%2f%2fthumbs.dreamstime.com%2fb%2fonline-shopping-app-logo-cart-icon-design-vector-232535148.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.2a9eb802ce61ce54a2c8bf08530de3a6%3frik%3dkuiNkBivXGlx8g%26pid%3dImgRaw%26r%3d0&exph=800&expw=800&q=shopping+app+logo&simid=608001790246265818&FORM=IRPRST&ck=8AE6D06B6E57F50C6B0D1AD89E2896FA&selectedIndex=5&itb=0&ajaxhist=0&ajaxserp=0";
+// import img from '../layout/'
 
 const Footer = () => {
   return (
     <div className="w-full h-auto bg-[#FCEED5] flex justify-center m-auto">
-      <div className="w-full max-w-[90%] m-2 flex flex-col items-center justify-around">
+      <div className="w-full m-2 flex flex-col items-center justify-around">
         <div className='w-full flex flex-col md:flex-row md:justify-around gap-5 bg-[#003459] text-white p-4 rounded-lg font-openSans font-semibold'>
           <p className='text-lg md:text-xl'>Register Now So You Don&apos;t Miss <br /> Out Our Programs!</p>
           <div className=' text-black bg-white p-2 border-2 rounded-lg'>
@@ -46,7 +46,7 @@ const Footer = () => {
         <div className="w-full flex flex-col md:flex-row items-center justify-between px-4 py-2 font-openSans text-md">
           <div className='my-2 block md:hidden'>
             <Link to={"/"}>
-              <img src={img} alt="myImage" width={"30px"} />
+              {/* <img src={img} alt="myImage" width={"30px"} /> */}
             </Link>
           </div>
 
@@ -56,7 +56,7 @@ const Footer = () => {
 
           <div className='my-2 hidden md:block'>
             <Link to={"/home"}>
-              <img src={img} alt="myImage" width={"50px"} />
+              {/* <img src={img} alt="myImage" width={"50px"} /> */}
             </Link>
           </div>
 
@@ -70,4 +70,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;
