@@ -12,7 +12,8 @@ const router = express.Router();
 router.post("/register", registerController);
 
 //login user
-router.post("/login", loginController);
+// router.post("/login", loginController);
+router.post('/login', loginController);
 
 //test router
 router.get("/test", requireSignIn, isAdmin, testController);
