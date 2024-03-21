@@ -3,15 +3,29 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Layout from '../../components/layout/Layout';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+        try {
+            // axios.defaults.withCredentials = true;
+            const res = await axios.post('http://localhost:3000/api/v1/auth/login', { email, password });
+            if (res && res.data.success) {
+                toast.success(res && res.data.message);
+                navigate('/');
+            }
+            else {
+                toast.error(res && res.data.message);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong!");
+        }
     }
 
     return (
