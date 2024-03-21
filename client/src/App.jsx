@@ -8,12 +8,17 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 import { Routes, Route } from "react-router-dom";
 import Register from './pages/Auth/Register.jsx';
 import Login from './pages/Auth/Login.jsx';
+import Dashboard from './pages/user/Dashboard.jsx';
+import PrivateRoute from './components/routes/PrivateRoute.jsx';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/dashboard' element={<PrivateRoute />} >
+        <Route path='' element={<Dashboard />} />
+      </Route>
       <Route path='/login' element={<Login />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />

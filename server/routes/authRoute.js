@@ -12,8 +12,12 @@ const router = express.Router();
 router.post("/register", registerController);
 
 //login user
-// router.post("/login", loginController);
-router.post('/login', loginController);
+router.post("/login", loginController);
+
+//protected route
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 //test router
 router.get("/test", requireSignIn, isAdmin, testController);
