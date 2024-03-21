@@ -2,32 +2,32 @@
 import React, { useState, useContext } from 'react';
 import { FaBars, FaTimes, FaUser, } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
-import { MdLogout } from "react-icons/md";
-import { Link } from 'react-router-dom';
-// import { AppContext } from '../App';
-// import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoLogOutOutline } from "react-icons/io5";
+import { useAuth } from '../../context/Auth';
+import toast from 'react-hot-toast';
 
 const Header = () => {
-  // const user = useContext(AppContext);
+  const [auth, setAuth] = useAuth();
   const [nav, setNav] = useState(false);
+  const navigate = useNavigate();
+
   const handleNav = () => {
     setNav(!nav);
   }
   const handleClick = () => {
     setNav(!nav);
   }
-  // const handleLogout = () => {
-  //   axios.get("http://localhost:8000/auth/logout")
-  //     .then((res) => {
-  //       console.log(res);
-  //       if (res.data === "Success") {
-  //         window.location.href = "/";
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  // }
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem('auth');
+    navigate('/');
+    toast.success("Logout Sucessfully!");
+  }
   return (
     <div className='sticky top-0 w-full bg-black text-white flex flex-row items-center justify-between md:justify-around px-4 md:px-0 py-3 z-50 font-poppins'>
       <div className=''>
@@ -111,20 +111,23 @@ const Header = () => {
 
       <div className="right flex flex-row items-center md:border-l-2 border-gray-800">
         <div className='sig_in mx-2 md:m-0'>
-          <div>
-            {/* {
-              user.role ?
+          {
+            !auth.user ? (
+              <div>
+                <Link to="/login" className='flex flex-row items-center px-2 py-2'>
+                  <FaUser className='mx-3' size={15} />
+                  Sign in
+                </Link>
+              </div>
+            ) : (
+              <div>
                 <Link onClick={handleLogout} className='flex flex-row items-center px-2 py-2'>
-                  <MdLogout className='mx-3' size={15} />
+                  <IoLogOutOutline className='mx-3' size={20} />
                   Logout
                 </Link>
-                :
-            } */}
-            <Link to="/login" className='flex flex-row items-center px-2 py-2'>
-              <FaUser className='mx-3' size={15} />
-              Sign in
-            </Link>
-          </div>
+              </div>
+            )
+          }
         </div>
 
         {/* shopping cart */}
