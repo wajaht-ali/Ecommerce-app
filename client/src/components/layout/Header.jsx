@@ -3,9 +3,9 @@ import React, { useState, useContext } from 'react';
 import { FaBars, FaTimes, FaUser, } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
-import { IoLogOutOutline } from "react-icons/io5";
 import { useAuth } from '../../context/Auth';
 import toast from 'react-hot-toast';
+import Dropdown from '../Dropdown.jsx';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -27,6 +27,10 @@ const Header = () => {
     localStorage.removeItem('auth');
     navigate('/');
     toast.success("Logout Sucessfully!");
+  }
+  function handleToggle() {
+    const dropdown = document.querySelector("#dropdownBtn #dropdown");
+    dropdown.classList.toggle("hidden");
   }
   return (
     <div className='sticky top-0 w-full bg-black text-white flex flex-row items-center justify-between md:justify-around px-4 md:px-0 py-3 z-50 font-poppins'>
@@ -51,24 +55,6 @@ const Header = () => {
           <li>
             <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
           </li>
-          {/* {
-            user.role === "author" ?
-              <li>
-                <Link className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/author">Author</Link>
-              </li>
-              :
-              <></>
-          } */}
-
-          {/* {
-            user.role === "admin" ?
-              <li>
-                <Link className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/admin">Admin</Link>
-              </li>
-              :
-              <></>
-          } */}
-
         </ul>
       </div>
 
@@ -90,22 +76,6 @@ const Header = () => {
           <li>
             <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
           </li>
-          {/* {
-            user.role === "author" ?
-              <li>
-                <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/author">Author</Link>
-              </li>
-              :
-              <></>
-          }
-          {
-            user.role === "admin" ?
-              <li>
-                <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/admin">Admin</Link>
-              </li>
-              :
-              <></>
-          } */}
         </ul>
       </div>
 
@@ -120,11 +90,8 @@ const Header = () => {
                 </Link>
               </div>
             ) : (
-              <div>
-                <Link onClick={handleLogout} className='flex flex-row items-center px-2 py-2'>
-                  <IoLogOutOutline className='mx-3' size={20} />
-                  Logout
-                </Link>
+              <div className=''>
+                <Dropdown />
               </div>
             )
           }

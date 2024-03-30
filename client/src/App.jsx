@@ -9,15 +9,22 @@ import { Routes, Route } from "react-router-dom";
 import Register from './pages/Auth/Register.jsx';
 import Login from './pages/Auth/Login.jsx';
 import Dashboard from './pages/user/Dashboard.jsx';
+import AdminDashboard from './pages/Admin/AdminDashboard.jsx';
 import PrivateRoute from './components/routes/PrivateRoute.jsx';
+import AdminRoute from "../src/components/routes/AdminRoute.jsx";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/register' element={<Register />} />
+      {/* User Dashboard */}
       <Route path='/dashboard' element={<PrivateRoute />} >
         <Route path='' element={<Dashboard />} />
+      </Route>
+      {/* Admin Dashboard */}
+      <Route path='/dashboard' element={<AdminRoute />}>
+        <Route path='' element={<AdminDashboard />} />
       </Route>
       <Route path='/login' element={<Login />} />
       <Route path="/about" element={<About />} />
