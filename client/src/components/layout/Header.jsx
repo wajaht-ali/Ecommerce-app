@@ -18,20 +18,8 @@ const Header = () => {
   const handleClick = () => {
     setNav(!nav);
   }
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
-    });
-    localStorage.removeItem('auth');
-    navigate('/');
-    toast.success("Logout Sucessfully!");
-  }
-  function handleToggle() {
-    const dropdown = document.querySelector("#dropdownBtn #dropdown");
-    dropdown.classList.toggle("hidden");
-  }
+  
+  
   return (
     <div className='sticky top-0 w-full bg-black text-white flex flex-row items-center justify-between md:justify-around px-4 md:px-0 py-3 z-50 font-poppins'>
       <div className=''>

@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../context/Auth';
 import axios from 'axios';
 import { Outlet } from 'react-router-dom';
-import Spinner from '../Spinner';
+import Spinner from '../Spinner.jsx';
+import { useAuth } from "../../context/Auth.jsx";
+import Dashboard from '../../pages/user/Dashboard.jsx';
 
 export default function PrivateRoute() {
     const [ok, setOk] = useState(false);
@@ -11,11 +12,13 @@ export default function PrivateRoute() {
 
     useEffect(() => {
         const authCheck = async () => {
-            const res = await axios.get("http://localhost:3000/api/v1/auth/user-auth", {
-                headers: {
-                    'Authorization': auth?.token
-                }
-            })
+            const res = await axios.get("http://localhost:3000/api/v1/auth/user-auth",
+                {
+                    headers: {
+                        'Authorization': auth?.token
+                    }
+                })
+            console.log(res);
             if (res.data.ok) {
                 setOk(true)
             }
@@ -23,8 +26,10 @@ export default function PrivateRoute() {
                 setOk(false)
             }
         }
+        console.log(auth);
         if (auth?.token) authCheck()
-    }, [auth?.token])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [auth, auth?.token])
 
     return ok ? <Outlet /> : <Spinner />
 }

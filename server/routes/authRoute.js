@@ -14,8 +14,13 @@ router.post("/register", registerController);
 //login user
 router.post("/login", loginController);
 
-//protected route
+//protected route for user
 router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+
+//protected route for admin
+router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
