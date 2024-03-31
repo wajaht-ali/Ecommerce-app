@@ -1,20 +1,23 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Spinner = () => {
-    const [count, setCount] = useState(5);
+const Spinner = ({ path = "login" }) => {
+    const [count, setCount] = useState(3);
     const navigate = useNavigate();
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCount((prevVal) => --prevVal);
         }, 1000)
-        if(count === 0) {
-            navigate('/login');
-        }
+        count === 0 &&
+            navigate(`/${path}`, {
+                state: location.pathname
+            })
+
         return () => clearInterval(interval);
-    }, [count, navigate])
+    }, [count, navigate, path])
     return (
         <div className='h-screen w-full flex flex-col items-center justify-center'>
             <button type="button" className="bg-indigo-500 p-2 rounded text-white text-center ..." disabled>

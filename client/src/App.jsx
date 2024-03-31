@@ -20,11 +20,11 @@ function App() {
       <Route path='/register' element={<Register />} />
       {/* User Dashboard */}
       <Route path='/dashboard' element={<PrivateRoute />} >
-        <Route path='' element={<Dashboard />} />
+        <Route path='user' element={<Dashboard />} />
       </Route>
       {/* Admin Dashboard */}
       <Route path='/dashboard' element={<AdminRoute />}>
-        <Route path='' element={<AdminDashboard />} />
+        <Route path='admin' element={<AdminDashboard />} />
       </Route>
       <Route path='/login' element={<Login />} />
       <Route path="/about" element={<About />} />

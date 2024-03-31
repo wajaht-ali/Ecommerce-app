@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Outlet } from 'react-router-dom';
 import Spinner from '../Spinner.jsx';
 import { useAuth } from "../../context/Auth.jsx";
-import Dashboard from '../../pages/user/Dashboard.jsx';
 
 export default function PrivateRoute() {
     const [ok, setOk] = useState(false);
@@ -26,9 +25,9 @@ export default function PrivateRoute() {
                 setOk(false)
             }
         }
-        console.log(auth);
+        // console.log(auth);
         if (auth?.token) authCheck()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth, auth?.token])
 
     return ok ? <Outlet /> : <Spinner />
