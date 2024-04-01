@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <Layout className="border-2 border-black">
       <h1>Home Page</h1>
-      {JSON.stringify(
-        auth, 
+      <pre>{JSON.stringify(
+        auth,
         null
-      )}
+      )}</pre>
     </Layout>
   )
 }

@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
+import toast from 'react-hot-toast';
 import Layout from '../../components/layout/Layout';
 
 const Register = () => {
@@ -12,9 +13,20 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+        try {
+            const res = await axios.post('http://localhost:3000/api/v1/auth/register', {name, email, phone, address, password});
+            if(res.data.success) {
+                toast.success(res.data.message);
+                navigate("/login");
+            }
+            else {
+                toast.error(res.data.message);
+            }
+        } catch (error) {
+            console.log(`Error with register ${error}`);
+        }
     }
 
     return (

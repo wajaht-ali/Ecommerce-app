@@ -7,25 +7,25 @@ export const registerController = async (req, res) => {
     const { name, email, password, phone, address } = req.body;
     //validation
     if (!name) {
-      return res.send({ error: "Please add the name." });
+      return res.send({ message: "Please add the name." });
     }
     if (!email) {
-      return res.send({ error: "Please add the email." });
+      return res.send({ message: "Please add the email." });
     }
     if (!password) {
-      return res.send({ error: "Please add the password." });
+      return res.send({ message: "Please add the password." });
     }
     if (!phone) {
-      return res.send({ error: "Please add the phone." });
+      return res.send({ message: "Please add the phone." });
     }
     if (!address) {
-      return res.send({ error: "Please add the address." });
+      return res.send({ message: "Please add the address." });
     }
     //existing user
     const existingUser = await UserModel.findOne({ email: email });
     if (existingUser) {
       return res.status(200).send({
-        success: true,
+        success: false,
         message: "Already Registered please login",
       });
     }
@@ -54,7 +54,6 @@ export const registerController = async (req, res) => {
 export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     //validation
     if (!email || !password) {
       return res.status(404).send({
@@ -86,6 +85,7 @@ export const loginController = async (req, res) => {
       message: "login sucessfully",
       user: {
         name: user.name,
+        role: user.role,
         email: user.email,
         phone: user.phone,
         address: user.address,
