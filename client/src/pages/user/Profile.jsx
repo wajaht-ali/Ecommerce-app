@@ -3,6 +3,8 @@ import React from 'react'
 import Layout from '../../components/layout/Layout.jsx';
 import UserMenu from '../../components/layout/UserMenu.jsx';
 
+const API_KEY = import.meta.env.VITE_APP_API;
+
 const Profile = () => {
   return (
     <Layout>

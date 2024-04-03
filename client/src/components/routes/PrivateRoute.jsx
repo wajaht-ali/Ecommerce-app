@@ -5,13 +5,15 @@ import { Outlet } from 'react-router-dom';
 import Spinner from '../Spinner.jsx';
 import { useAuth } from "../../context/Auth.jsx";
 
+const API_KEY = import.meta.env.VITE_APP_API;
+
 export default function PrivateRoute() {
     const [ok, setOk] = useState(false);
     const [auth, setAuth] = useAuth();
 
     useEffect(() => {
         const authCheck = async () => {
-            const res = await axios.get("http://localhost:3000/api/v1/auth/user-auth",
+            const res = await axios.get(`${API_KEY}/api/v1/auth/user-auth`,
                 {
                     headers: {
                         'Authorization': auth?.token

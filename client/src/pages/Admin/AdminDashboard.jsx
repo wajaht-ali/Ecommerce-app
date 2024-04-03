@@ -4,6 +4,8 @@ import Layout from '../../components/layout/Layout.jsx';
 import AdminMenu from '../../components/layout/AdminMenu.jsx';
 import { useAuth } from '../../context/Auth.jsx';
 
+const API_KEY = import.meta.env.VITE_APP_API;
+
 const AdminDashboard = () => {
     const [auth, setAuth] = useAuth();
     return (

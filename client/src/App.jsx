@@ -37,7 +37,6 @@ function App() {
         <Route path='admin/create-category' element={<CreateCategory />} />
         <Route path='admin/users' element={<Users />} />
       </Route>
-      <Route path='/login' element={<Login />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/policy" element={<Policy />} />

@@ -3,6 +3,8 @@ import React from 'react'
 import Layout from '../../components/layout/Layout'
 import UserMenu from '../../components/layout/UserMenu'
 
+const API_KEY = import.meta.env.VITE_APP_API;
+
 const Orders = () => {
   return (
     <Layout>

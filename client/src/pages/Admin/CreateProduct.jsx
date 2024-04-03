@@ -3,6 +3,8 @@ import React from 'react'
 import AdminMenu from '../../components/layout/AdminMenu'
 import Layout from '../../components/layout/Layout'
 
+const API_KEY = import.meta.env.VITE_APP_API;
+
 const CreateProduct = () => {
   return (
     <Layout>
