@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
+import { categoryRoute } from "./routes/categoryRoute.js";
+import { productRouter } from "./routes/productRoute.js";
 
 //env config
 dotenv.config();
@@ -23,6 +25,8 @@ app.use(
 );
 //routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/category", categoryRoute);
+app.use("/api/v1/product", productRouter);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on ${PORT}`);
