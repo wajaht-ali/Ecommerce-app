@@ -18,6 +18,7 @@ import Orders from './pages/user/Orders.jsx';
 import PrivateRoute from './components/routes/PrivateRoute.jsx';
 import AdminRoute from "../src/components/routes/AdminRoute.jsx";
 import Products from "./pages/Admin/Products.jsx";
+import UpdateProduct from "./pages/Admin/UpdateProduct.jsx";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path='admin/create-product' element={<CreateProduct />} />
         <Route path='admin/create-category' element={<CreateCategory />} />
         <Route path='admin/products' element={<Products />} />
+        <Route path="admin/update-product/:slug" element={<UpdateProduct />} />
         <Route path='admin/users' element={<Users />} />
       </Route>
       <Route path="/about" element={<About />} />

@@ -35,7 +35,7 @@ router.put(
 router.get("/get-product", getProductController);
 
 //get single products
-router.get("/get-product/:id", getSingleProductController);
+router.get("/get-product/:slug", getSingleProductController);
 
 //get products photo
 router.get("/get-product-photo/:id", getProductPhotoController);

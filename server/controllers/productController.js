@@ -24,11 +24,9 @@ export const createProductController = async (req, res) => {
       case !category:
         return res.status(500).send({ message: "Category is requried!" });
       case photo && photo.size > 1000000:
-        return res
-          .status(500)
-          .send({
-            message: "Shipping is requried & should be less than 1 MB!",
-          });
+        return res.status(500).send({
+          message: "Shipping is requried & should be less than 1 MB!",
+        });
     }
     const foundCategory = await CategoryModel.findOne({ name: category });
     const product = new ProductModel({
@@ -66,15 +64,15 @@ export const createProductController = async (req, res) => {
 export const updateProductController = async (req, res) => {
   try {
     const { pid } = req.params;
-    const { name, slug, description, price, quantity, category, shipping } =
+    const { name, description, price, quantity, category, shipping } =
       req.fields;
     const { photo } = req.files;
     //validation
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is requried!" });
-      case !slug:
-        return res.status(500).send({ error: "Slug is requried!" });
+      // case !slug:
+      //   return res.status(500).send({ error: "Slug is requried!" });
       case !description:
         return res.status(500).send({ error: "Description is requried!" });
       case !price:
@@ -88,11 +86,24 @@ export const updateProductController = async (req, res) => {
           .status(500)
           .send({ error: "Shipping is requried & should be less than 1 MB!" });
     }
+
+    const foundCategory = await CategoryModel.findOne({ name: category });
+    // console.log(foundCategory)
     const product = await ProductModel.findByIdAndUpdate(
       pid,
-      { ...req.fields, slug: slugify(name) },
+      {
+        name,
+        slug: slugify(name),
+        description,
+        price,
+        quantity,
+        category: foundCategory._id, // Use the ObjectId of the found category
+        shipping,
+        slug: slugify(name),
+      },
       { new: true }
     );
+    
     //photo validation
     if (photo) {
       product.photo.data = fs.readFileSync(photo.path);
@@ -140,8 +151,8 @@ export const getProductController = async (req, res) => {
 //get single product
 export const getSingleProductController = async (req, res) => {
   try {
-    const { id } = req.params;
-    const product = await ProductModel.findById(id)
+    const slug = req.params.slug;
+    const product = await ProductModel.findOne({ slug: slug })
       .populate("category")
       .select("-photo");
     res.status(201).send({
@@ -163,8 +174,8 @@ export const getSingleProductController = async (req, res) => {
 export const getProductPhotoController = async (req, res) => {
   try {
     const product = await ProductModel.findById(req.params.id).select("photo");
-    if(product.photo.data) {
-      res.set('Content-type', product.photo.contentType)
+    if (product.photo.data) {
+      res.set("Content-type", product.photo.contentType);
     }
     res.status(201).send(product.photo.data);
   } catch (error) {
