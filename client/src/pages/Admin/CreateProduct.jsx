@@ -67,7 +67,7 @@ const CreateProduct = () => {
                 <div className='w-auto md:min-w-[200px] md:mr-2 md:border p-2 h-auto'>
                     <AdminMenu />
                 </div>
-                <div className='border min-w-[80%]'>
+                <div className='border w-full'>
                     <h2 className='text-xl md:text-3xl px-4 py-4 font-semibold select-none text-start'>Create Product</h2>
                     <div className='w-full px-4'>
                         <form onSubmit={handleSubmit}>

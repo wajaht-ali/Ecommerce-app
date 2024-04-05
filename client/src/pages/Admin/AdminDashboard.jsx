@@ -10,12 +10,12 @@ const AdminDashboard = () => {
     const [auth, setAuth] = useAuth();
     return (
         <Layout>
-            <div className='w-full h-full flex flex-row items-center p-4'>
-                <div className='border w-auto md:min-w-[20%] p-2 h-auto'>
+            <div className='w-full h-full flex flex-col md:flex-row justify-around py-4 text-black'>
+                <div className='w-auto md:min-w-[200px] md:mr-2 md:border p-2 h-auto'>
                     <AdminMenu />
                 </div>
-                <div className='border min-w-[80%]'>
-                    <h2 className='text-xl font-semibold select-none text-end'>Welcome back, {auth?.user?.name}</h2>
+                <div className='border w-full'>
+                    <h2 className='text-xl md:text-3xl px-4 py-4 font-semibold select-none text-start'>Welcome back, {auth?.user?.name}</h2>
                 </div>
             </div>
         </Layout>

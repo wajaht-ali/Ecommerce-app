@@ -17,6 +17,7 @@ import Profile from './pages/user/Profile.jsx';
 import Orders from './pages/user/Orders.jsx';
 import PrivateRoute from './components/routes/PrivateRoute.jsx';
 import AdminRoute from "../src/components/routes/AdminRoute.jsx";
+import Products from "./pages/Admin/Products.jsx";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='admin' element={<AdminDashboard />} />
         <Route path='admin/create-product' element={<CreateProduct />} />
         <Route path='admin/create-category' element={<CreateCategory />} />
+        <Route path='admin/products' element={<Products />} />
         <Route path='admin/users' element={<Users />} />
       </Route>
       <Route path="/about" element={<About />} />

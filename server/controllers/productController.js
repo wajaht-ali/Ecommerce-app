@@ -26,10 +26,12 @@ export const createProductController = async (req, res) => {
       case photo && photo.size > 1000000:
         return res
           .status(500)
-          .send({ error: "Shipping is requried & should be less than 1 MB!" });
+          .send({
+            message: "Shipping is requried & should be less than 1 MB!",
+          });
     }
     const foundCategory = await CategoryModel.findOne({ name: category });
-    const product = new ProductModel({ 
+    const product = new ProductModel({
       name,
       slug: slugify(name),
       description,
@@ -37,7 +39,8 @@ export const createProductController = async (req, res) => {
       quantity,
       category: foundCategory._id, // Use the ObjectId of the found category
       shipping,
-      slug: slugify(name) });
+      slug: slugify(name),
+    });
     //photo validation
     if (photo) {
       product.photo.data = fs.readFileSync(photo.path);
@@ -156,6 +159,23 @@ export const getSingleProductController = async (req, res) => {
   }
 };
 
+//get product photo
+export const getProductPhotoController = async (req, res) => {
+  try {
+    const product = await ProductModel.findById(req.params.id).select("photo");
+    if(product.photo.data) {
+      res.set('Content-type', product.photo.contentType)
+    }
+    res.status(201).send(product.photo.data);
+  } catch (error) {
+    console.log(`Error with get photo product ${error}`);
+    res.status(500).send({
+      success: false,
+      message: "Error with get photo product",
+      error,
+    });
+  }
+};
 //delete a product
 export const deleteSingleProduct = async (req, res) => {
   try {
