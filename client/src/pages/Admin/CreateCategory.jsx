@@ -28,12 +28,12 @@ const CreateCategory = () => {
   useEffect(() => {
     getAllCategories();
   }, [])
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(`${API_KEY}/api/v1/category/create-category`, { name });
-      console.log(res)
+      // console.log(res)
       if (res?.data?.success) {
         setName("");
         alert("Category added sucessfully!");
@@ -44,6 +44,23 @@ const CreateCategory = () => {
       }
     } catch (error) {
       console.log(`Error with create category ${error}`);
+    }
+  }
+
+  const handleDelete = async (id) => {
+    // e.preventDefault();
+    try {
+      const res = await axios.delete(`${API_KEY}/api/v1/category/delete-category/` + id);
+      console.log(res)
+      if (res?.data?.success) {
+        alert("Category deleted sucessfully!");
+        getAllCategories();
+      }
+      else {
+        alert(res.data.message);
+      }
+    } catch (error) {
+      console.log(`Error with delete category ${error}`);
     }
   }
   return (
@@ -74,7 +91,7 @@ const CreateCategory = () => {
                     <td className="p-2 py-4">{item.name}</td>
                     <td className="p-2 py-4">
                       <Link to={"#"} className="bg-green-300 mx-2 py-1 px-2 rounded">Edit</Link>
-                      <Link to={"#"} className="bg-red-500 py-1 mx-2 px-2 rounded">Delete</Link>
+                      <button onClick={() => handleDelete(item._id)} className="bg-red-500 py-1 mx-2 px-2 rounded">Delete</button>
                     </td>
                   </tr>
                 ))}

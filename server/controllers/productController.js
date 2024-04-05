@@ -1,33 +1,43 @@
 import fs from "fs";
 import ProductModel from "../models/productModel.js";
+import CategoryModel from "../models/categoryModel.js";
 import slugify from "slugify";
 
 //create product
 export const createProductController = async (req, res) => {
   try {
-    const { name, slug, description, price, quantity, category, shipping } =
+    const { name, description, price, quantity, category, shipping } =
       req.fields;
     const { photo } = req.files;
     //validation
     switch (true) {
       case !name:
-        return res.status(500).send({ error: "Name is requried!" });
-      case !slug:
-        return res.status(500).send({ error: "Slug is requried!" });
+        return res.status(500).send({ message: "Name is requried!" });
+      // case !slug:
+      //   return res.status(500).send({ message: "Slug is requried!" });
       case !description:
-        return res.status(500).send({ error: "Description is requried!" });
+        return res.status(500).send({ message: "Description is requried!" });
       case !price:
-        return res.status(500).send({ error: "Price is requried!" });
+        return res.status(500).send({ message: "Price is requried!" });
       case !quantity:
-        return res.status(500).send({ error: "Quantity is requried!" });
+        return res.status(500).send({ message: "Quantity is requried!" });
       case !category:
-        return res.status(500).send({ error: "Category is requried!" });
+        return res.status(500).send({ message: "Category is requried!" });
       case photo && photo.size > 1000000:
         return res
           .status(500)
           .send({ error: "Shipping is requried & should be less than 1 MB!" });
     }
-    const product = new ProductModel({ ...req.fields, slug: slugify(name) });
+    const foundCategory = await CategoryModel.findOne({ name: category });
+    const product = new ProductModel({ 
+      name,
+      slug: slugify(name),
+      description,
+      price,
+      quantity,
+      category: foundCategory._id, // Use the ObjectId of the found category
+      shipping,
+      slug: slugify(name) });
     //photo validation
     if (photo) {
       product.photo.data = fs.readFileSync(photo.path);
