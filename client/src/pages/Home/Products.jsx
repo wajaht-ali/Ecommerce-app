@@ -50,7 +50,16 @@ const Products = () => {
     }
     setChecked(all);
   }
-
+  const filterProducts = async () => {
+    try {
+      const res = await axios.post(`${API_KEY}/api/v1/product/product-filters`, { radio, checked })
+      if (res.data.success) {
+        setProducts(res.data.products)
+      }
+    } catch (error) {
+      console.log(`Error with filtering products ${error}`);
+    }
+  }
   const fetchProducts = async () => {
     try {
       const res = await axios.get(`${API_KEY}/api/v1/product/get-product`);
@@ -82,9 +91,15 @@ const Products = () => {
   }
 
   useEffect(() => {
-    fetchProducts();
-  }, [])
-  useState(() => {
+    if (!radio.length || !checked.length) fetchProducts();
+  }, [radio.length, checked.length])
+
+  useEffect(() => {
+    filterProducts();
+    // eslint-disable-next-line
+  }, [radio, checked])
+
+  useEffect(() => {
     getCategories();
   }, [])
   return (
@@ -98,7 +113,7 @@ const Products = () => {
             </div>
 
             {/* Mobile nav */}
-            <div className={!sidenav ? "hidden" : "nav_items absolute top-100 left-1  block md:hidden bg-blue-200 py-4 px-2 rounded-lg h-auto box-border z-50"}>
+            <div className={!sidenav ? "hidden" : "nav_items sticky top-100 left-1  block md:hidden bg-blue-200 py-4 px-2 rounded-lg h-auto box-border z-40"}>
               <div>
                 <h2 className='text-2xl text-center font-semibold mb-4'>Filter Products</h2>
                 <h3 className='text-lg font-semibold'>Category</h3>
@@ -116,13 +131,14 @@ const Products = () => {
                   <div className='flex flex-col justify-around'>
                     {prices.map((item) => (
                       <label className='hover:bg-gray-50 border-b-2 rounded-sm p-2 w-full select-none' htmlFor={item._sid} key={item._sid}>
-                        <input className='mx-2' value={item.array} id={item._sid} type="radio" name='PriceTag' />
+                        <input className='mx-2' value={item.array} id={item._sid} type="radio" name='PriceTag' onChange={(e) => setRadio(e.target.value)}/>
                         {item.name}
                       </label>
                     ))}
                   </div>
                 </div>
               </div>
+              <button className='bg-green-600 px-3 py-2 mt-2 rounded text-white' onClick={() => window.location.reload()}>Rest</button>
             </div>
 
 
@@ -152,6 +168,7 @@ const Products = () => {
                   ))}
                 </div>
               </div>
+              <button className='bg-blue-600 px-3 py-2 mt-2 rounded text-white' onClick={() => window.location.reload()}>Rest</button>
             </div>
           </div>
         </div>
@@ -182,10 +199,9 @@ const Products = () => {
                         </Typography>
                       </div>
                       {/* Uncomment this section if you want to display additional description */}
-                      {/* <Typography variant="small" color="gray" className="font-normal opacity-75">
-            With plenty of talk and listen time, voice-activated Siri access, and
-            an available wireless charging case.
-        </Typography> */}
+                      <Typography variant="small" color="gray" className="font-normal opacity-75">
+                        {item.description.substring(0, 50)}
+                      </Typography>
                     </CardBody>
                     <CardFooter className="pt-0 flex flex-row gap-2">
                       <Link to={`/dashboard/admin/update-product/${item.slug}`}>

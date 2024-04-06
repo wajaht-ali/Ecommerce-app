@@ -103,7 +103,7 @@ export const updateProductController = async (req, res) => {
       },
       { new: true }
     );
-    
+
     //photo validation
     if (photo) {
       product.photo.data = fs.readFileSync(photo.path);
@@ -220,6 +220,31 @@ export const productPhotoController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error with product photo",
+      error,
+    });
+  }
+};
+//filter product
+export const productFilterController = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+
+    //filtering queries
+    let query = {};
+    if (checked.length > 0) query.category = checked;
+    if (radio.length) query.price = { $gte: radio[0], $lte: radio[1] };
+
+    const products = await ProductModel.find(query)
+    res.status(201).send({
+      success: true,
+      message: "product filter sucessfully!",
+      products,
+    })
+  } catch (error) {
+    console.log(`Error with product filter ${error}`);
+    res.status(500).send({
+      success: false,
+      message: "Error with filter product",
       error,
     });
   }
