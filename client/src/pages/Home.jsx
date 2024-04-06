@@ -7,11 +7,7 @@ const Home = () => {
   const [auth, setAuth] = useAuth();
   return (
     <Layout className="border-2 border-black">
-      <h1>Home Page</h1>
-      <pre>{JSON.stringify(
-        auth,
-        null
-      )}</pre>
+      
     </Layout>
   )
 }

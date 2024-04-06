@@ -81,7 +81,7 @@ const UpdateProduct = () => {
             console.log(`Error with form data ${error}`)
         }
     }
-
+    
     useEffect(() => {
         getProductById();
     }, [])

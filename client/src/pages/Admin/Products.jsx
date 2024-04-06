@@ -18,6 +18,7 @@ const API_KEY = import.meta.env.VITE_APP_API;
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [images, setImages] = useState([]);
+
     const fetchProducts = async () => {
         try {
             const res = await axios.get(`${API_KEY}/api/v1/product/get-product`);
@@ -29,6 +30,22 @@ const Products = () => {
             }
         } catch (error) {
             console.log(`Error with get products ${error}`)
+        }
+    }
+    const handleDelete = async (id) => {
+        try {
+            let qus = window.prompt("Are you sure to delete this product?");
+            if(qus === 'No' || qus === 'no') return;
+            const res = await axios.delete(`${API_KEY}/api/v1/product/delete-product/${id}`);
+            if (res.data.success) {
+                alert("Product deleted sucessfully!");
+                fetchProducts();
+            }
+            else {
+                alert(res.data.message);
+            }
+        } catch (error) {
+            console.log(`Error with delete product!`);
         }
     }
     useEffect(() => {
@@ -82,7 +99,7 @@ const Products = () => {
                                                     className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-green-500 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">
                                                     Update Product
                                                 </Button></Link>
-                                            <Link to={"#"}>
+                                            <Link onClick={() => handleDelete(item._id)}>
                                                 <Button ripple={false}
                                                     fullWidth={true}
                                                     className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none  hover:bg-red-600 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">

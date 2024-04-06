@@ -2,8 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import './styles/App.css';
 import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import Contact from "./pages/Contact.jsx";
+
 import Policy from "./pages/Policy.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import Register from './pages/Auth/Register.jsx';
@@ -19,6 +18,8 @@ import PrivateRoute from './components/routes/PrivateRoute.jsx';
 import AdminRoute from "../src/components/routes/AdminRoute.jsx";
 import Products from "./pages/Admin/Products.jsx";
 import UpdateProduct from "./pages/Admin/UpdateProduct.jsx";
+// import AllProducts from "./components/Home/Products.jsx";
+import AllProducts from "./pages/Home/Products.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/products' element={<AllProducts />} />
       {/* User Dashboard */}
       <Route path='/dashboard' element={<PrivateRoute />} >
         <Route path='user' element={<Dashboard />} />
@@ -41,8 +43,7 @@ function App() {
         <Route path="admin/update-product/:slug" element={<UpdateProduct />} />
         <Route path='admin/users' element={<Users />} />
       </Route>
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
+    
       <Route path="/policy" element={<Policy />} />
       <Route path="/*" element={<PageNotFound />} />
     </Routes>
