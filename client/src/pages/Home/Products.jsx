@@ -5,6 +5,7 @@ import Layout from '../../components/layout/Layout'
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from "react-icons/fa";
 import prices from '../../components/Prices.js';
+import SearchInput from '../SearchInput.jsx';
 import {
   Card,
   CardHeader,
@@ -13,11 +14,13 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import Sidebar from './Sidebar';
 
 const API_KEY = import.meta.env.VITE_APP_API;
 
+import { useNavigate } from "react-router-dom";
+
 const Products = () => {
+  const navigate = useNavigate();
   const [sidenav, setSidenav] = useState(false);
   const [category, setCategory] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -131,7 +134,7 @@ const Products = () => {
                   <div className='flex flex-col justify-around'>
                     {prices.map((item) => (
                       <label className='hover:bg-gray-50 border-b-2 rounded-sm p-2 w-full select-none' htmlFor={item._sid} key={item._sid}>
-                        <input className='mx-2' value={item.array} id={item._sid} type="radio" name='PriceTag' onChange={(e) => setRadio(e.target.value)}/>
+                        <input className='mx-2' value={item.array} id={item._sid} type="radio" name='PriceTag' onChange={(e) => setRadio(e.target.value)} />
                         {item.name}
                       </label>
                     ))}
@@ -172,14 +175,15 @@ const Products = () => {
             </div>
           </div>
         </div>
-        <div className='border w-full h-auto'>
+        <div className='border w-full h-auto mx-auto flex flex-col items-center'>
           {/* {JSON.stringify(radio, null, 4)} */}
           <h2 className='text-xl md:text-3xl px-4 py-4 font-semibold select-none text-start'>All Products</h2>
+          <SearchInput />
           <div className='py-2'>
             <div className=' flex flex-col md:flex-row items-center justify-around gap-5 flex-wrap'>
 
               {products.map((item) => (
-                <Link key={item._id} to={`/admin/dashboard/products/${item.slug}`}>
+                <Link key={item._id} to={`/product/${item.slug}`}>
                   <Card className="w-80 mx-2">
                     <CardHeader shadow={false} floated={false} className="h-64 overflow-hidden">
                       <img
@@ -204,13 +208,14 @@ const Products = () => {
                       </Typography>
                     </CardBody>
                     <CardFooter className="pt-0 flex flex-row gap-2">
-                      <Link to={`/dashboard/admin/update-product/${item.slug}`}>
+                      <Link to={`/product/${item.slug}`}>
                         <Button
                           ripple={false}
                           fullWidth={true}
+                          // onClick={() => navigate(`/product/${item.slug}`)}
                           className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-green-500 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">More Details</Button>
                       </Link>
-                      <Link onClick={() => handleDelete(item._id)}>
+                      <Link >
                         <Button
                           ripple={false}
                           fullWidth={true}

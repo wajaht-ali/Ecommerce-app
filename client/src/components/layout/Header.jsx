@@ -37,9 +37,9 @@ const Header = () => {
           <li>
             <Link className='border-[#FA6400] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/products">Products</Link>
           </li>
-          <li>
+          {/* <li>
             <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/category">Category</Link>
-          </li>
+          </li> */}
           {/* <li>
             <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
           </li> */}

@@ -234,17 +234,37 @@ export const productFilterController = async (req, res) => {
     if (checked.length > 0) query.category = checked;
     if (radio.length) query.price = { $gte: radio[0], $lte: radio[1] };
 
-    const products = await ProductModel.find(query)
+    const products = await ProductModel.find(query);
     res.status(201).send({
       success: true,
       message: "product filter sucessfully!",
       products,
-    })
+    });
   } catch (error) {
     console.log(`Error with product filter ${error}`);
     res.status(500).send({
       success: false,
       message: "Error with filter product",
+      error,
+    });
+  }
+};
+//search product controller
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const product = await ProductModel.find({
+      $or: [
+        { name: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } },
+      ],
+    }).select("-photo");
+    res.json(product);
+  } catch (error) {
+    console.log(`Error with search product ${error}`);
+    res.status(500).send({
+      success: false,
+      message: "Error with product search",
       error,
     });
   }

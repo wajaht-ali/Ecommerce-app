@@ -20,11 +20,15 @@ import Products from "./pages/Admin/Products.jsx";
 import UpdateProduct from "./pages/Admin/UpdateProduct.jsx";
 // import AllProducts from "./components/Home/Products.jsx";
 import AllProducts from "./pages/Home/Products.jsx";
+import Search from "./pages/Search.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/product/:slug" element={<ProductDetails />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path='/products' element={<AllProducts />} />
@@ -43,7 +47,7 @@ function App() {
         <Route path="admin/update-product/:slug" element={<UpdateProduct />} />
         <Route path='admin/users' element={<Users />} />
       </Route>
-    
+
       <Route path="/policy" element={<Policy />} />
       <Route path="/*" element={<PageNotFound />} />
     </Routes>
