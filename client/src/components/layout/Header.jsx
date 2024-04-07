@@ -6,9 +6,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/Auth';
 import toast from 'react-hot-toast';
 import Dropdown from '../Dropdown.jsx';
+import { useCart } from '../../context/Cart.jsx';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
   const [nav, setNav] = useState(false);
   const navigate = useNavigate();
 
@@ -84,7 +86,7 @@ const Header = () => {
 
         {/* shopping cart */}
         <div className="right flex items-center md:ml-3 border-gray-800">
-          <Link to="cart"><IoCartOutline size={30} /></Link>
+          <Link className='flex flex-row items-center' to="/cart"><IoCartOutline size={30} />{cart?.length}</Link>
         </div>
         <div onClick={handleNav} className="p-3 mx-2 block md:hidden hamburger cursor-pointer">
           {!nav ? <FaBars size={20} /> : <FaTimes size={20} />}

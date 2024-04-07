@@ -22,6 +22,7 @@ import UpdateProduct from "./pages/Admin/UpdateProduct.jsx";
 import AllProducts from "./pages/Home/Products.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import CartPage from "./pages/CartPage.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
       <Route path="/product/:slug" element={<ProductDetails />} />
+      <Route path="/cart" element={<CartPage />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path='/products' element={<AllProducts />} />

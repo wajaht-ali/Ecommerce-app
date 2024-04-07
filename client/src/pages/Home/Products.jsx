@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from "react-icons/fa";
 import prices from '../../components/Prices.js';
 import SearchInput from '../SearchInput.jsx';
+import { useCart } from '../../context/Cart.jsx';
+
 import {
   Card,
   CardHeader,
@@ -26,6 +28,7 @@ const Products = () => {
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useCart();
 
   const toggleNav = () => {
     setSidenav(!sidenav);
@@ -92,7 +95,16 @@ const Products = () => {
       console.log(`Error with delete product!`);
     }
   }
+  const handleAddToCart = (item) => {
+    // Update cart state using the function form of setCart
+    setCart(prevCart => {
+        const newCart = [...prevCart, item];
+        localStorage.setItem('cart', JSON.stringify(newCart)); // Update local storage
+        return newCart; // Return the new cart state
+    });
 
+    alert("Added to cart!");
+};
   useEffect(() => {
     if (!radio.length || !checked.length) fetchProducts();
   }, [radio.length, checked.length])
@@ -217,8 +229,7 @@ const Products = () => {
                       </Link>
                       <Link >
                         <Button
-                          ripple={false}
-                          fullWidth={true}
+                        onClick={() => handleAddToCart(item)}
                           className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-600 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">Add to Cart</Button>
                       </Link>
                     </CardFooter>
