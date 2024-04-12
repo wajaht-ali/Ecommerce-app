@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout/Layout'
 import { useParams } from 'react-router-dom';
-const API_KEY = import.meta.env.VITE_APP_API;
 import axios from 'axios';
 import { useCart } from '../context/Cart';
 
@@ -13,7 +12,7 @@ const ProductDetails = () => {
 
     const getProducts = async () => {
         try {
-            const res = await axios.get(`${API_KEY}/api/v1/product/get-product-details/${slug}`);
+            const res = await axios.get(`/api/v1/product/get-product-details/${slug}`);
             // console.log(product);
             if (res?.data?.success) {
                 setProduct(res.data.product);
@@ -51,7 +50,7 @@ const ProductDetails = () => {
                 <div className='w-full border rounded p-2 flex flex-col md:flex-row justify-around gap-4'>
                     <div className=''>
                         <img
-                            src={`${API_KEY}/api/v1/product/get-product-photo/${product._id}`}
+                            src={`/api/v1/product/get-product-photo/${product._id}`}
                             alt="card-image"
                             className="h-full w-full object-cover"
                             style={{ minHeight: '100%', minWidth: '100%' }} />

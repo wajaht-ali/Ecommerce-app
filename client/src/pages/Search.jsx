@@ -3,8 +3,6 @@ import React from 'react'
 import Layout from '../components/layout/Layout'
 import { useSearch } from '../context/Search'
 import { Link } from "react-router-dom";
-const API_KEY = import.meta.env.VITE_APP_API;
-
 import {
     Card,
     CardHeader,
@@ -32,7 +30,7 @@ const Search = () => {
                                     <Card className="w-80 mx-2">
                                         <CardHeader shadow={false} floated={false} className="h-64 overflow-hidden">
                                             <img
-                                                src={`${API_KEY}/api/v1/product/get-product-photo/${item._id}`}
+                                                src={`/api/v1/product/get-product-photo/${item._id}`}
                                                 alt="card-image"
                                                 className="h-full w-full object-cover"
                                                 style={{ minHeight: '100%', minWidth: '100%' }}

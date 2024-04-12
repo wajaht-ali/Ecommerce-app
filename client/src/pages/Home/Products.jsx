@@ -17,7 +17,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-const API_KEY = import.meta.env.VITE_APP_API;
+// const API_KEY = import.meta.env.VITE_APP_API;
 
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ const Products = () => {
   }
   const getCategories = async () => {
     try {
-      const res = await axios.get(`${API_KEY}/api/v1/category/get-category`);
+      const res = await axios.get(`/api/v1/category/get-category`);
       if (res.data.success) {
         setCategory(res.data.category);
       }
@@ -58,7 +58,7 @@ const Products = () => {
   }
   const filterProducts = async () => {
     try {
-      const res = await axios.post(`${API_KEY}/api/v1/product/product-filters`, { radio, checked })
+      const res = await axios.post(`/api/v1/product/product-filters`, { radio, checked })
       if (res.data.success) {
         setProducts(res.data.products)
       }
@@ -68,7 +68,7 @@ const Products = () => {
   }
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`${API_KEY}/api/v1/product/get-product`);
+      const res = await axios.get(`/api/v1/product/get-product`);
       if (res.data.success) {
         setProducts(res.data.product);
       }
@@ -83,7 +83,7 @@ const Products = () => {
     try {
       let qus = window.prompt("Are you sure to delete this product?");
       if (qus === 'No' || qus === 'no') return;
-      const res = await axios.delete(`${API_KEY}/api/v1/product/delete-product/${id}`);
+      const res = await axios.delete(`/api/v1/product/delete-product/${id}`);
       if (res.data.success) {
         alert("Product deleted sucessfully!");
         fetchProducts();
@@ -98,13 +98,13 @@ const Products = () => {
   const handleAddToCart = (item) => {
     // Update cart state using the function form of setCart
     setCart(prevCart => {
-        const newCart = [...prevCart, item];
-        localStorage.setItem('cart', JSON.stringify(newCart)); // Update local storage
-        return newCart; // Return the new cart state
+      const newCart = [...prevCart, item];
+      localStorage.setItem('cart', JSON.stringify(newCart)); // Update local storage
+      return newCart; // Return the new cart state
     });
 
     alert("Added to cart!");
-};
+  };
   useEffect(() => {
     if (!radio.length || !checked.length) fetchProducts();
   }, [radio.length, checked.length])
@@ -199,7 +199,7 @@ const Products = () => {
                   <Card className="w-80 mx-2">
                     <CardHeader shadow={false} floated={false} className="h-64 overflow-hidden">
                       <img
-                        src={`${API_KEY}/api/v1/product/get-product-photo/${item._id}`}
+                        src={`/api/v1/product/get-product-photo/${item._id}`}
                         alt="card-image"
                         className="h-full w-full object-cover"
                         style={{ minHeight: '100%', minWidth: '100%' }}
@@ -229,7 +229,7 @@ const Products = () => {
                       </Link>
                       <Link >
                         <Button
-                        onClick={() => handleAddToCart(item)}
+                          onClick={() => handleAddToCart(item)}
                           className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-600 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">Add to Cart</Button>
                       </Link>
                     </CardFooter>

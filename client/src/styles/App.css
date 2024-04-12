@@ -848,6 +848,11 @@ video {
   margin-bottom: 0.75rem;
 }
 
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .-ml-1{
   margin-left: -0.25rem;
 }
@@ -1240,6 +1245,18 @@ video {
 
 .w-screen{
   width: 100vw;
+}
+
+.w-\[60\%\]{
+  width: 60%;
+}
+
+.w-\[80\%\]{
+  width: 80%;
+}
+
+.w-\[70\%\]{
+  width: 70%;
 }
 
 .min-w-\[100vw\]{
