@@ -17,6 +17,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 
+
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {
@@ -93,16 +94,17 @@ const Products = () => {
       console.log(`Error with delete product!`);
     }
   }
-  const handleAddToCart = (item) => {
-    // Update cart state using the function form of setCart
-    setCart(prevCart => {
-      const newCart = [...prevCart, item];
-      localStorage.setItem('cart', JSON.stringify(newCart)); // Update local storage
-      return newCart; // Return the new cart state
-    });
-
-    alert("Added to cart!");
-  };
+  // const handleAddToCart = (item) => {
+  //   // Update cart state using the function form of setCart
+  //   // setCart(prevCart => {
+  //   //   const newCart = [...prevCart, item];
+  //   //   localStorage.setItem('cart', JSON.stringify(newCart));
+  //   //   return newCart;
+  //   // });
+  //   setCart([...cart, item]);
+  //   localStorage.setItem('cart', JSON.stringify([...cart, item]));
+  //   alert("Added to cart!");
+  // };
   useEffect(() => {
     if (!radio.length || !checked.length) fetchProducts();
   }, [radio.length, checked.length])
@@ -227,7 +229,10 @@ const Products = () => {
                       </Link>
                       <Link >
                         <Button
-                          onClick={() => handleAddToCart(item)}
+                          onClick={() => {
+                            setCart([...cart, item]),
+                              localStorage.setItem('cart', JSON.stringify([...cart, item]))
+                          }}
                           className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-600 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">Add to Cart</Button>
                       </Link>
                     </CardFooter>
