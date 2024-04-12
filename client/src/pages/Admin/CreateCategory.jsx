@@ -5,7 +5,6 @@ import AdminMenu from '../../components/layout/AdminMenu'
 import axios from 'axios';
 import { Link, Outlet } from 'react-router-dom';
 
-const API_KEY = import.meta.env.VITE_APP_API;
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -13,7 +12,7 @@ const CreateCategory = () => {
 
   const getAllCategories = async () => {
     try {
-      const res = await axios.get(`${API_KEY}/api/v1/category/get-category`, { name });
+      const res = await axios.get(`/api/v1/category/get-category`, { name });
       // console.log(res)
       if (res.data.success) {
         setCategories(res.data.category);
@@ -32,7 +31,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${API_KEY}/api/v1/category/create-category`, { name });
+      const res = await axios.post(`/api/v1/category/create-category`, { name });
       // console.log(res)
       if (res?.data?.success) {
         setName("");
@@ -50,7 +49,7 @@ const CreateCategory = () => {
   const handleDelete = async (id) => {
     // e.preventDefault();
     try {
-      const res = await axios.delete(`${API_KEY}/api/v1/category/delete-category/` + id);
+      const res = await axios.delete(`/api/v1/category/delete-category/` + id);
       console.log(res)
       if (res?.data?.success) {
         alert("Category deleted sucessfully!");

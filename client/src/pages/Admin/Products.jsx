@@ -13,7 +13,6 @@ import {
     Button,
 } from "@material-tailwind/react";
 
-const API_KEY = import.meta.env.VITE_APP_API;
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -21,7 +20,7 @@ const Products = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await axios.get(`${API_KEY}/api/v1/product/get-product`);
+            const res = await axios.get(`/api/v1/product/get-product`);
             if (res.data.success) {
                 setProducts(res.data.product);
             }
@@ -35,8 +34,8 @@ const Products = () => {
     const handleDelete = async (id) => {
         try {
             let qus = window.prompt("Are you sure to delete this product?");
-            if(qus === 'No' || qus === 'no') return;
-            const res = await axios.delete(`${API_KEY}/api/v1/product/delete-product/${id}`);
+            if (qus === 'No' || qus === 'no') return;
+            const res = await axios.delete(`/api/v1/product/delete-product/${id}`);
             if (res.data.success) {
                 alert("Product deleted sucessfully!");
                 fetchProducts();
@@ -64,15 +63,9 @@ const Products = () => {
                         <div className=' flex flex-col md:flex-row items-center justify-around gap-5 flex-wrap'>
                             {products.map((item) => (
                                 <Link key={item._id} to={`/admin/dashboard/products/${item.slug}`}>
-                                    {/* <div className='border p-2 m-2 w-[200px] h-[200px]' >
-                                        <p>{item.name}</p>
-                                        <p>{item.price}</p>
-                                        <p>{item.quantity}</p>
-                                        <img src={`${API_KEY}/api/v1/product/get-product-photo/${item._id}`} alt="product-image" />
-                                    </div> */}
                                     <Card className="w-80 mx-2">
                                         <CardHeader shadow={false} floated={false} className="h-96">
-                                            <img src={`${API_KEY}/api/v1/product/get-product-photo/${item._id}`}
+                                            <img src={`/api/v1/product/get-product-photo/${item._id}`}
                                                 alt="card-image"
                                                 className="h-full w-full object-cover" />
                                         </CardHeader>

@@ -5,7 +5,6 @@ import Layout from '../../components/layout/Layout'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_KEY = import.meta.env.VITE_APP_API;
 
 const CreateProduct = () => {
     const [categories, setCategories] = useState([]);
@@ -20,7 +19,7 @@ const CreateProduct = () => {
 
     const getAllCategories = async () => {
         try {
-            const res = await axios.get(`${API_KEY}/api/v1/category/get-category`);
+            const res = await axios.get(`/api/v1/category/get-category`);
             if (res?.data?.success) {
                 setCategories(res?.data?.category);
             }
@@ -43,7 +42,7 @@ const CreateProduct = () => {
             formdata.append("shipping", shipping);
             formdata.append("photo", photo);
 
-            const res = await axios.post(`${API_KEY}/api/v1/product/create-product`, formdata);
+            const res = await axios.post(`/api/v1/product/create-product`, formdata);
             console.log(res)
             if (res.data.success) {
                 alert("Product create sucessfully.");

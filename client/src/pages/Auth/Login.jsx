@@ -6,7 +6,6 @@ import Layout from '../../components/layout/Layout';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/Auth';
 
-const API_KEY = import.meta.env.VITE_APP_API;
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -18,7 +17,7 @@ const Login = () => {
         e.preventDefault();
         try {
             // axios.defaults.withCredentials = true;
-            const res = await axios.post(`${API_KEY}/api/v1/auth/login`, { email, password });
+            const res = await axios.post(`/api/v1/auth/login`, { email, password });
             if (res && res.data.success) {
                 toast.success(res && res.data.message);
                 setAuth({

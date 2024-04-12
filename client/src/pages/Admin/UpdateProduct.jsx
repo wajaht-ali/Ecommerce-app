@@ -5,7 +5,6 @@ import Layout from '../../components/layout/Layout'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const API_KEY = import.meta.env.VITE_APP_API;
 
 const UpdateProduct = () => {
     const [categories, setCategories] = useState([]);
@@ -22,7 +21,7 @@ const UpdateProduct = () => {
 
     const getAllCategories = async () => {
         try {
-            const res = await axios.get(`${API_KEY}/api/v1/category/get-category`);
+            const res = await axios.get(`/api/v1/category/get-category`);
             if (res?.data?.success) {
                 setCategories(res?.data?.category);
             }
@@ -36,7 +35,7 @@ const UpdateProduct = () => {
 
     const getProductById = async () => {
         try {
-            const res = await axios.get(`${API_KEY}/api/v1/product/get-product/${slug}`);
+            const res = await axios.get(`/api/v1/product/get-product/${slug}`);
             // console.log(res);
             if (res.data.success) {
                 setName(res.data.product.name);
@@ -68,7 +67,7 @@ const UpdateProduct = () => {
             formdata.append("shipping", shipping);
             photo && formdata.append("photo", photo);
             
-            const res = await axios.put(`${API_KEY}/api/v1/product/update-product/${id}`, formdata);
+            const res = await axios.put(`/api/v1/product/update-product/${id}`, formdata);
             // console.log(res)
             if (res.data.success) {
                 alert("Product updated sucessfully.");
@@ -137,7 +136,7 @@ const UpdateProduct = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <img src={`${API_KEY}/api/v1/product/get-product-photo/${id}`} alt="my Image" />
+                                        <img src={`/api/v1/product/get-product-photo/${id}`} alt="my Image" />
                                     </>
                                 )}
                             </div>

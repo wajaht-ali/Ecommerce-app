@@ -5,7 +5,6 @@ import { Outlet } from 'react-router-dom';
 import Spinner from '../Spinner.jsx';
 import { useAuth } from "../../context/Auth.jsx";
 
-const API_KEY = import.meta.env.VITE_APP_API;
 
 export default function PrivateRoute() {
     const [ok, setOk] = useState(false);
@@ -13,7 +12,7 @@ export default function PrivateRoute() {
 
     useEffect(() => {
         const authCheck = async () => {
-            const res = await axios.get(`${API_KEY}/api/v1/auth/user-auth`)
+            const res = await axios.get(`/api/v1/auth/user-auth`)
             console.log(res);
             if (res.data.ok) {
                 setOk(true)
