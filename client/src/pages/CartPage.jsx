@@ -70,6 +70,7 @@ const CartPage = () => {
                         <h4 className='text-xl font-semibold'>Shopping Details</h4>
                         <hr />
                         <p>Total: ${totalPrice()}</p>
+                        <p>Current Address: ${auth?.user?.address}</p>
                     </div>
                 </div>
             </div>

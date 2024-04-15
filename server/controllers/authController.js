@@ -84,6 +84,7 @@ export const loginController = async (req, res) => {
       success: true,
       message: "login sucessfully",
       user: {
+        _id: user._id,
         name: user.name,
         role: user.role,
         email: user.email,
@@ -102,8 +103,48 @@ export const loginController = async (req, res) => {
   }
 };
 
+//update profile
+export const updateProfileController = async (req, res) => {
+  try {
+    // console.log(req);
+    const { name, email, password, address, phone } = req.body;
+    const user = await UserModel.findById(req.user._id);
+    // password validation
+    if (password && password.length < 3) {
+      return res
+        .status(201)
+        .send({ message: "Password must be greater than 4 characters!" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        password: hashedPassword || user.password,
+        address: address || user.address,
+        phone: phone || user.phone,
+      },
+      { new: true }
+    );
+
+    res.status(201).send({
+      success: true,
+      message: "User updated sucessfully!",
+      updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: true,
+      message: "Error with update profile controller",
+      error,
+    });
+  }
+};
+
 //test
 export const testController = async (req, res) => {
   res.send("protected route");
 };
+
 // export default {registerController}
