@@ -1,6 +1,7 @@
 import express from "express";
 import {
   loginController,
+  ordersController,
   registerController,
   testController,
   updateProfileController,
@@ -27,6 +28,9 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
+
+//orders 
+router.get("/orders", requireSignIn, ordersController);
 
 //test router
 router.get("/test", requireSignIn, isAdmin, testController);

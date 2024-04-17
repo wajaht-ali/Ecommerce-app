@@ -142,6 +142,20 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
+// orders
+export const ordersController = async (req, res) => {
+  try {
+    res.send({message: "Order controller."});
+  } catch (error) {
+    res.status(500).send({
+      success: true,
+      message: "Error with update profile controller",
+      error,
+    });
+  }
+};
+
+
 //test
 export const testController = async (req, res) => {
   res.send("protected route");
