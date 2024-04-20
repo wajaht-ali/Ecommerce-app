@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import Layout from '../components/layout/Layout.jsx';
-import { useAuth } from '../context/Auth.jsx';
 import SearchInput from './SearchInput.jsx';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const [auth, setAuth] = useAuth();
+
   return (
     <Layout className="border-2 border-black">
       <div className='w-full h-auto flex flex-col items-center py-4 text-black'>
@@ -21,7 +20,7 @@ const Home = () => {
                 We help startups to grow and make money
               </h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
+                E-shopping is a online shopping stroe, serving you the best quality products at your door step.
               </p>
               <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
                 <Link to="/products" className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
