@@ -22,7 +22,7 @@ const SearchInput = () => {
     return (
         <div className='flex flex-row items-center gap-4'>
             <form onSubmit={handleSubmit}>
-                <input className='border p-2 rounded md:w-[400px]' type="search" placeholder='Search' value={values.keyword} onChange={(e) => setValues({ ...values, keyword: e.target.value })} />
+                <input className='border p-2 rounded md:w-[400px]' type="search" placeholder='Search' value={values.keyword} onChange={(e) => setValues({ ...values, keyword: e.target.value })} required/>
             </form>
             <button className='bg-blue-600 px-3 py-2 rounded text-white'  type='submit' onClick={handleSubmit}>Search</button>
         </div>
