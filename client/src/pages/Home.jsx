@@ -3,6 +3,10 @@ import React from 'react'
 import Layout from '../components/layout/Layout.jsx';
 import SearchInput from './SearchInput.jsx';
 import { Link } from 'react-router-dom';
+import img from '../assets/OIP.jpeg';
+import img1 from "../assets/kids_coll.jpeg";
+import img2 from "../assets/mens_coll.jpg";
+import img3 from "../assets/women_coll.jpeg";
 
 const Home = () => {
 
@@ -17,7 +21,7 @@ const Home = () => {
                 Over 200 successful deals
               </h1>
               <h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
-                We help startups to grow and make money
+                Find your favourite brands, on your single tap.
               </h2>
               <p>
                 E-shopping is a online shopping stroe, serving you the best quality products at your door step.
@@ -36,21 +40,41 @@ const Home = () => {
             </div>
             <div className="flex-none mt-14 md:mt-0 md:max-w-xl">
               <img
-                src="https://images.unsplash.com/photo-1573164713619-24c711fe7878?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80"
+                src={img}
                 className=" md:rounded-tl-[108px]"
                 alt=""
               />
             </div>
           </div>
           <div className="mt-14 px-4 md:px-8">
-            <p className="text-center text-sm text-gray-700 font-semibold">Trusted by the best companies</p>
-            <div className="flex justify-center items-center flex-wrap gap-x-12 gap-y-6 mt-6">
-              <ul className='w-full flex flex-row items-center justify-around border rounded'>
-                <li>Logo One</li>
-                <li>Logo One</li>
-                <li>Logo One</li>
-              </ul>
+            <p className="text-center text-xl md:text-2xl text-black font-bold">Featured Categories</p>
+            <div className="flex justify-center md:justify-around items-center flex-wrap gap-x-12 gap-y-6 mt-6">
+              <Link to="/products">
+                <div >
+                  <img className='w-[150px] h-[150px] object-contain rounded-md' src={img1} alt="Image" />
+                  <h2 className="font-semibold text-lg">Kids Collection</h2>
+                </div></Link>
+              <Link to="/products">
+                <div >
+                  <img className='w-[150px] h-[150px] object-contain rounded-md' src={img2} alt="Image" />
+                  <h2 className="font-semibold text-lg">Men Collection</h2>
+                </div></Link>
+              <Link to="/products">
+                <div >
+                  <img className='w-[150px] h-[150px] object-contain rounded-md' src={img3} alt="Image" />
+                  <h2 className="font-semibold text-lg">Women Collection</h2>
+                </div></Link>
             </div>
+            <button className='my-8 w-full mx-auto'>
+              <Link to="/products" className='text-white bg-blue-600 hover:bg-blue-500 rounded-md text-lg py-2 px-3'>View More</Link>
+            </button>
+          </div>
+          <div className="mt-14 px-4 md:px-8">
+            <p className="text-center text-xl md:text-2xl text-black font-bold">Featured Products</p>
+            <div className="flex justify-center md:justify-around items-center flex-wrap gap-x-12 gap-y-6 mt-6"></div>
+            <button className='my-8 w-full mx-auto'>
+              <Link to="/products" className='text-white bg-blue-600 hover:bg-blue-500 rounded-md text-lg py-2 px-3'>View More</Link>
+            </button>
           </div>
         </section>
       </div>
