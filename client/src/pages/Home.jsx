@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout/Layout.jsx';
 import SearchInput from './SearchInput.jsx';
 import { Link } from 'react-router-dom';
@@ -7,9 +7,36 @@ import img from '../assets/OIP.jpeg';
 import img1 from "../assets/kids_coll.jpeg";
 import img2 from "../assets/mens_coll.jpg";
 import img3 from "../assets/women_coll.jpeg";
+import axios from 'axios';
+import { useCart } from '../context/Cart.jsx';
+import {
+  Card,
+  CardFooter,
+  Button,
+  CardHeader,
+  CardBody,
+  Typography,
+} from "@material-tailwind/react";
 
 const Home = () => {
-
+  const [products, setProducts] = useState([]);
+ const [cart, setCart] = useCart();
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get(`/api/v1/product/get-product`);
+      if (res.data.success) {
+        setProducts(res.data.product);
+      }
+      else {
+        alert(res.data.message);
+      }
+    } catch (error) {
+      console.log(`Error with get products ${error}`)
+    }
+  }
+  useEffect(() => {
+    fetchProducts();
+  }, [])
   return (
     <Layout className="border-2 border-black">
       <div className='w-full h-auto flex flex-col items-center py-4 text-black'>
@@ -71,7 +98,52 @@ const Home = () => {
           </div>
           <div className="mt-14 px-4 md:px-8">
             <p className="text-center text-xl md:text-2xl text-black font-bold">Featured Products</p>
-            <div className="flex justify-center md:justify-around items-center flex-wrap gap-x-12 gap-y-6 mt-6"></div>
+            <div className="flex justify-center md:justify-around items-center flex-wrap gap-x-12 gap-y-6 mt-6">
+              {products.slice(0, 4).map((item) => (
+                <Link key={item._id} to={`/admin/dashboard/products/${item.slug}`}>
+                  <Card className="w-80 mx-2">
+                    <CardHeader shadow={false} floated={false} className="h-96">
+                      <img src={`/api/v1/product/get-product-photo/${item._id}`}
+                        alt="card-image"
+                        className="h-full w-full object-cover" />
+                    </CardHeader>
+                    <CardBody>
+                      <div className="mb-2 flex items-center justify-between">
+                        <Typography color="blue-gray" className="font-medium">
+                          {item.name}
+                        </Typography>
+                        <Typography color="blue-gray" className="font-medium">
+                          ${item.price}
+                        </Typography>
+                      </div>
+                      <Typography variant="small"
+                        color="gray"
+                        className="font-normal opacity-75" >
+                        With plenty of talk and listen time, voice-activated Siri access, and
+                        an available wireless charging case.
+                      </Typography>
+                    </CardBody>
+                    <CardFooter className="pt-0 flex flex-row gap-2">
+                      <Link to={`/product/${item.slug}`}>
+                        <Button
+                          ripple={false}
+                          fullWidth={true}
+                          // onClick={() => navigate(`/product/${item.slug}`)}
+                          className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-green-500 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">More Details</Button>
+                      </Link>
+                      <Link >
+                        <Button
+                          onClick={() => {
+                            setCart([...cart, item]),
+                              localStorage.setItem('cart', JSON.stringify([...cart, item]))
+                          }}
+                          className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none hover:bg-blue-600 hover:text-white focus:scale-105 focus:shadow-none active:scale-100">Add to Cart</Button>
+                      </Link>
+                    </CardFooter>
+                  </Card>
+                </Link>
+              ))}
+            </div>
             <button className='my-8 w-full mx-auto'>
               <Link to="/products" className='text-white bg-blue-600 hover:bg-blue-500 rounded-md text-lg py-2 px-3'>View More</Link>
             </button>

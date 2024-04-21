@@ -16,7 +16,6 @@ import {
 
 const Products = () => {
     const [products, setProducts] = useState([]);
-    const [images, setImages] = useState([]);
 
     const fetchProducts = async () => {
         try {

@@ -14,6 +14,7 @@ import {
 
 const Search = () => {
     const [values, setValues] = useSearch();
+    console.log(values);
     return (
         <Layout>
             <div className='w-full h-auto flex flex-col items-center py-4 text-black'>
