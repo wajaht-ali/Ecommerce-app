@@ -5,6 +5,7 @@ import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import { categoryRoute } from "./routes/categoryRoute.js";
 import { productRouter } from "./routes/productRoute.js";
+import { miscRouter } from "./routes/miscRoute.js";
 
 //env config
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/misc", miscRouter);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server is running on ${PORT}`);
