@@ -25,9 +25,13 @@ const Users = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete("/api/v1/users/delete-user/" + id);
+      const res = await axios.delete(`/api/v1/users/delete-user/${id}`);
       if (res.data.success) {
         alert("User deleted sucessfylly!");
+        getUsers();
+      }
+      else {
+        alert(res.data.message);
       }
     } catch (error) {
       console.log(`Error with deleting user ${error}`);

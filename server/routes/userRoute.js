@@ -8,5 +8,5 @@ const router = express.Router();
 router.get("/get-users", getUsersController);
 
 //delete single user
-router.delete("/delete-user", requireSignIn, isAdmin, deleteUserController);
+router.delete("/delete-user/:id", requireSignIn, isAdmin, deleteUserController);
 export { router as UserRouter };

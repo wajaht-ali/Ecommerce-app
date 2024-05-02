@@ -23,6 +23,7 @@ export const getUsersController = async (req, res) => {
 export const deleteUserController = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id);
     const user = await UserModel.findByIdAndDelete(id);
     res.status(201).send({
       success: true,
