@@ -1,7 +1,12 @@
 import express from "express";
-import { getUsersController } from "../controllers/userController.js";
+import { deleteUserController, getUsersController } from "../controllers/userController.js";
+import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
+//get all users
 router.get("/get-users", getUsersController);
+
+//delete single user
+router.delete("/delete-user", requireSignIn, isAdmin, deleteUserController);
 export { router as UserRouter };
