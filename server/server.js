@@ -6,6 +6,7 @@ import cors from "cors";
 import { categoryRoute } from "./routes/categoryRoute.js";
 import { productRouter } from "./routes/productRoute.js";
 import { miscRouter } from "./routes/miscRoute.js";
+import { UserRouter } from "./routes/userRoute.js";
 
 //env config
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/misc", miscRouter);
 
 app.listen(PORT, (req, res) => {
