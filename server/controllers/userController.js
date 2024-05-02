@@ -39,3 +39,32 @@ export const deleteUserController = async (req, res) => {
     });
   }
 };
+
+//update single user
+export const updateUserController = async (req, res) => {
+  try {
+    const { uid } = req.params;
+    const { name, phone, address } = req.body;
+
+    //validations
+    if (!name || !phone || !address) {
+      return res.status(500).send({
+        success: false,
+        message: "Please fill all fields",
+      });
+    }
+    const user = await UserModel.findByIdAndUpdate(uid, {}, { new: true });
+    res.status(201).send({
+      success: true,
+      message: "User updated sucessfully!",
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error with updating user",
+      error,
+    });
+  }
+};
