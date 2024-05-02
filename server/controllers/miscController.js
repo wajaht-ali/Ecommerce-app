@@ -14,7 +14,7 @@ export const newsletterController = async (req, res) => {
     const existingEmail = await NewsletterModel.findOne({ email: email });
     if (existingEmail) {
       return res.status(201).send({
-        sucess: true,
+        success: true,
         message: "Email is already registered!",
         existingEmail,
       });

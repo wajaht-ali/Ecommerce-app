@@ -1,22 +1,38 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebookSquare, FaTwitterSquare, FaInstagramSquare, FaYoutubeSquare } from 'react-icons/fa';
 import Layout from './Layout';
+import axios from 'axios';
 
 // import img from '../layout/'
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      axios.defaults.withCredentials = true;
+      const res = await axios.post("/api/v1/misc/newsletter", { email });
+      // console.log(res);
+      if (res.data.success == true) {
+        alert("Subscribed sucessfully!");
+        setEmail("");
+      }
+    } catch (error) {
+      console.log(`Error with newsletter ${error}`);
+    }
+  }
   return (
     <div className="w-full h-auto bg-[#FCEED5] flex justify-center m-auto">
       <div className="w-full m-2 flex flex-col items-center justify-around">
         <div className='w-full flex flex-col md:flex-row md:justify-around gap-5 bg-[#003459] text-white p-4 rounded-lg font-openSans font-semibold'>
           <p className='text-lg md:text-xl'>Register Now So You Don&apos;t Miss <br /> Out Our Programs!</p>
-          <div className=' text-black bg-white p-2 border-2 rounded-lg'>
-            <input className='border-2 border-gray-500 rounded-lg w-full md:w-auto py-2 px-4 my-2 md:mx-3' type="email" id="email" placeholder='Enter Your Email' />
-            <button className='bg-[#003459] text-white rounded-md py-2 px-2 w-full md:w-auto my-1 hover:bg-[#0b446c]'>Subscribe Now</button>
-          </div>
+          <form onSubmit={handleSubmit} className=' text-black bg-white p-2 border-2 rounded-lg'>
+            <input className='border-2 border-gray-500 rounded-lg w-full md:w-auto py-2 px-4 my-2 md:mx-3' type="email" id="email" placeholder='Enter Your Email' onChange={(e) => setEmail(e.target.value)} value={email}/>
+            <button onClick={handleSubmit} className='bg-[#003459] text-white rounded-md py-2 px-2 w-full md:w-auto my-1 hover:bg-[#0b446c]'>Subscribe Now</button>
+          </form>
         </div>
 
         <div className="w-full flex flex-col md:flex-row items-center justify-between py-4 my-2">
