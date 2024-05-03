@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import UserMenu from '../../components/layout/UserMenu.jsx';
 import { useAuth } from "../../context/Auth.jsx";
 
 
 const UpdateUser = () => {
-    const [auth, setAuth] = useAuth();
+    const id  = useParams();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -16,6 +16,18 @@ const UpdateUser = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    const fetchUser = async (id) => {
+        try {
+            const res = await axios(`/api/v1/users/user/${id}`);
+            console.log(res);
+        } catch (error) {
+            console.log(`Error with single user ${error}`);
+        }
+    }
+
+    useEffect(() => {
+        fetchUser();
+    }, [])
 
     //   const handleSubmit = async (e) => {
     //     e.preventDefault();
