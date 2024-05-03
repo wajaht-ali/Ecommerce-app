@@ -115,7 +115,7 @@ export const updateProfileController = async (req, res) => {
         .status(201)
         .send({ message: "Password must be greater than 4 characters!" });
     }
-    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const hashedPassword = await password ? await hashPassword(password) : undefined;
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.user._id,
       {

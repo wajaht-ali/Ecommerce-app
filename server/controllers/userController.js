@@ -1,3 +1,4 @@
+import { hashPassword } from "../helpers/authHelper.js";
 import UserModel from "../models/userModel.js";
 
 // get all users
@@ -47,13 +48,26 @@ export const updateUserController = async (req, res) => {
     const { name, phone, address } = req.body;
 
     //validations
-    if (!name || !phone || !address) {
+    if (!name || !email || !password || !phone || !address) {
       return res.status(500).send({
         success: false,
         message: "Please fill all fields",
       });
     }
-    const user = await UserModel.findByIdAndUpdate(uid, {}, { new: true });
+    //existing user
+    const regUser = await UserModel.findById(uid);
+    
+    //password validation
+    const hashedPassword = await password ? await hashPassword(password) : undefined;
+
+    //update and save the user details
+    const user = await UserModel.findByIdAndUpdate(uid, {
+      name: name || regUser.name,
+      email: email || reg.email,
+      password: hashedPassword || regUser.password,
+      phone: phone || regUser.phone,
+      address: address || regUser.address
+    }, { new: true });
     res.status(201).send({
       success: true,
       message: "User updated sucessfully!",

@@ -2848,6 +2848,10 @@ video {
   font-size: 11px;
 }
 
+.text-\[14px\]{
+  font-size: 14px;
+}
+
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2871,10 +2875,6 @@ video {
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[14px\]{
-  font-size: 14px;
 }
 
 .font-bold{
@@ -6556,14 +6556,14 @@ video {
     line-height: 1;
   }
 
-  .md\:text-xl{
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .md\:text-base{
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .md\:text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 

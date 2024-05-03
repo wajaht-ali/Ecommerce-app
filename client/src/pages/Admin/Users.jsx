@@ -69,7 +69,7 @@ const Users = () => {
                     <td className="py-2 md:px-4">{item.email}</td>
                     <td className="py-2 md:px-4">{item.role}</td>
 
-                    <td className="py-2 md:px-4"><Link className="bg-green-500 text-white py-1 px-2 rounded" to={`/admin/update-user/${item._id}`}>Edit</Link></td>
+                    <td className="py-2 md:px-4"><Link className="bg-green-500 text-white py-1 px-2 rounded" to={`/dashboard/admin/update-user/${item._id}`}>Edit</Link></td>
 
                     <td className="py-2 md:px-4"><Link className="bg-red-500 text-white py-1 px-2 rounded" onClick={(e) => handleDelete(item._id)}>Delete</Link></td>
                   </tr>

@@ -23,6 +23,7 @@ import AllProducts from "./pages/Home/Products.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import CartPage from "./pages/CartPage.jsx";
+import UpdateUser from "./pages/Admin/UpdateUser.jsx";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path='admin/products' element={<Products />} />
         <Route path="admin/update-product/:slug" element={<UpdateProduct />} />
         <Route path='admin/users' element={<Users />} />
+        <Route path='admin/update-user/:id' element={<UpdateUser />} />
       </Route>
 
       <Route path="/policy" element={<Policy />} />
