@@ -34,7 +34,7 @@ router.put(
   updateProductController
 );
 
-//get products
+//get all products
 router.get("/get-product", getProductController);
 
 //get single products

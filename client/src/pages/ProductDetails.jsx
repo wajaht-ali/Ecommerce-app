@@ -10,7 +10,7 @@ const ProductDetails = () => {
     const { slug } = useParams();
     const [product, setProduct] = useState([]);
 
-    const getProducts = async () => {
+    const getProducts = async (slug) => {
         try {
             const res = await axios.get(`/api/v1/product/get-product-details/${slug}`);
             // console.log(product);
@@ -35,9 +35,9 @@ const ProductDetails = () => {
         alert("Added to cart!");
     };
     useEffect(() => {
-        getProducts();
+        getProducts(slug);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [slug])
 
     return (
         <Layout>

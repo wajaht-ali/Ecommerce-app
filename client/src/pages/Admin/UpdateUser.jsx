@@ -1,53 +1,42 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import UserMenu from '../../components/layout/UserMenu.jsx';
-import { useAuth } from "../../context/Auth.jsx";
-
 
 const UpdateUser = () => {
-    const id  = useParams();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const [password, setPassword] = useState('');
+    const { id } = useParams();
+    // console.log(id);
     const fetchUser = async (id) => {
         try {
-            const res = await axios(`/api/v1/users/user/${id}`);
-            console.log(res);
+            const res = await axios.get(`/api/v1/users/user/${id}`);
+            if(res.data.success) {
+                const {name, email, password, address, phone} = res.data.user;
+                setName(name);
+                setEmail(email);
+                setPhone(phone);
+                setAddress(address);
+                setPassword(password);
+            }
+            else {
+                alert(res.data.message);
+            }
         } catch (error) {
             console.log(`Error with single user ${error}`);
         }
     }
 
     useEffect(() => {
-        fetchUser();
-    }, [])
+        fetchUser(id);
+    }, [id])
 
-    //   const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //       const res = await axios.put('/api/v1/auth/profile', { name, email, password, address, phone });
-    //       if (res.data.error) {
-    //         alert("Something went wrong!");
-    //       }
-    //       else {
-    //         setAuth({ ...auth, user: res.data.updatedUser });
-    //         let ls = localStorage.getItem('auth');
-    //         ls = JSON.parse(ls);
-    //         ls.user = res.data.updatedUser;
-    //         localStorage.setItem('auth', JSON.stringify(ls));
-    //         navigate('/dashboard/user');
-    //       }
-    //     } catch (error) {
-    //       console.log(`Error with update user ${error}`);
-    //     }
-    //   }
+    
     const handleSubmit = async () => {
         try {
             // const user;
@@ -66,7 +55,7 @@ const UpdateUser = () => {
 
                     <form onSubmit={handleSubmit} className="w-[400px] border rounded-sm shadow-sm p-4">
                         <div className='flex flex-col'>
-                            <input className='px-2 my-2 border-b border-black py-1 outline-none' type="text" placeholder='Enter Name' onChange={(e) => setName(e.target.value)} value={name} />
+                            <input className='px-2 my-2 border-b border-black py-1 outline-none' type="text" placeholder='Enter Name' onChange={(e) => setName(e.target.value)} value={name}/>
                         </div>
 
                         <div className='flex flex-col'>

@@ -41,6 +41,7 @@ const Users = () => {
   useEffect(() => {
     getUsers();
   }, [])
+  
   return (
     <Layout>
       <div className='w-full h-full flex flex-col md:flex-row justify-around py-4 text-black'>

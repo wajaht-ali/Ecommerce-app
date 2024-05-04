@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { hashPassword } from "../helpers/authHelper.js";
 import UserModel from "../models/userModel.js";
 
@@ -20,11 +21,35 @@ export const getUsersController = async (req, res) => {
   }
 };
 
+//get single user
+export const singleUserController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // id validation
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ message: "Invalid user ID format" });
+    }
+    const user = await UserModel.find({ _id: id });
+    res.status(201).send({
+      success: true,
+      message: "Get single user successfully!",
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error with getting single user",
+      error,
+    });
+  }
+};
 //delete single user
 export const deleteUserController = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
     const user = await UserModel.findByIdAndDelete(id);
     res.status(201).send({
       success: true,
@@ -56,18 +81,24 @@ export const updateUserController = async (req, res) => {
     }
     //existing user
     const regUser = await UserModel.findById(uid);
-    
+
     //password validation
-    const hashedPassword = await password ? await hashPassword(password) : undefined;
+    const hashedPassword = (await password)
+      ? await hashPassword(password)
+      : undefined;
 
     //update and save the user details
-    const user = await UserModel.findByIdAndUpdate(uid, {
-      name: name || regUser.name,
-      email: email || reg.email,
-      password: hashedPassword || regUser.password,
-      phone: phone || regUser.phone,
-      address: address || regUser.address
-    }, { new: true });
+    const user = await UserModel.findByIdAndUpdate(
+      uid,
+      {
+        name: name || regUser.name,
+        email: email || reg.email,
+        password: hashedPassword || regUser.password,
+        phone: phone || regUser.phone,
+        address: address || regUser.address,
+      },
+      { new: true }
+    );
     res.status(201).send({
       success: true,
       message: "User updated sucessfully!",
