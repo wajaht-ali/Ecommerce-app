@@ -11,7 +11,6 @@ const Users = () => {
   const getUsers = async () => {
     try {
       const res = await axios.get("/api/v1/users/get-users");
-      // console.log(res);
       if (res.data.success) {
         setUsers(res.data.users)
       }

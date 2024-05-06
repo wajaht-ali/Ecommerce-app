@@ -21,6 +21,7 @@ import {
 const Home = () => {
   const [products, setProducts] = useState([]);
  const [cart, setCart] = useCart();
+
   const fetchProducts = async () => {
     try {
       const res = await axios.get(`/api/v1/product/get-product`);
@@ -34,6 +35,7 @@ const Home = () => {
       console.log(`Error with get products ${error}`)
     }
   }
+  
   useEffect(() => {
     fetchProducts();
   }, [])

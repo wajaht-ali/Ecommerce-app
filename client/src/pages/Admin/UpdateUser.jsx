@@ -39,7 +39,6 @@ const UpdateUser = () => {
         e.preventDefault();
         try {
             const res = await axios.put(`/api/v1/users/update-user/${id}`, {name, email, password, address, phone});
-            console.log(res);
             if(res.data.success) {
                 alert("User updated successfully!");
                 navigate("/dashboard/admin/users");
