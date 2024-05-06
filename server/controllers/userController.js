@@ -30,7 +30,7 @@ export const singleUserController = async (req, res) => {
     if (!mongoose.isValidObjectId(id)) {
       return res.status(400).json({ message: "Invalid user ID format" });
     }
-    const user = await UserModel.find({ _id: id });
+    const user = await UserModel.findById(id);
     res.status(201).send({
       success: true,
       message: "Get single user successfully!",
@@ -45,6 +45,7 @@ export const singleUserController = async (req, res) => {
     });
   }
 };
+
 //delete single user
 export const deleteUserController = async (req, res) => {
   try {
@@ -70,7 +71,7 @@ export const deleteUserController = async (req, res) => {
 export const updateUserController = async (req, res) => {
   try {
     const { uid } = req.params;
-    const { name, phone, address } = req.body;
+    const { name, email, phone, address, password } = req.body;
 
     //validations
     if (!name || !email || !password || !phone || !address) {
