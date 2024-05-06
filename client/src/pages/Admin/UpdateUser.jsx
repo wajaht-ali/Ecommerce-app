@@ -33,15 +33,16 @@ const UpdateUser = () => {
         } catch (error) {
             console.log(`Error with single user ${error}`);
         }
-    }, [])
+    }, [id])
 
-    const handleSubmit = async (id) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            const res = await axios.put(`/api/v1/users/update-user/${id}`);
+            const res = await axios.put(`/api/v1/users/update-user/${id}`, {name, email, password, address, phone});
             console.log(res);
             if(res.data.success) {
                 alert("User updated successfully!");
-                navigate("/users");
+                navigate("/dashboard/admin/users");
             }
             else {
                 alert(res.data.message);

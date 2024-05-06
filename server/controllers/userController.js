@@ -25,7 +25,7 @@ export const getUsersController = async (req, res) => {
 export const singleUserController = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     // id validation
     if (!mongoose.isValidObjectId(id)) {
       return res.status(400).json({ message: "Invalid user ID format" });
@@ -70,18 +70,11 @@ export const deleteUserController = async (req, res) => {
 //update single user
 export const updateUserController = async (req, res) => {
   try {
-    const { uid } = req.params;
+    const { id } = req.params;
     const { name, email, phone, address, password } = req.body;
-
-    //validations
-    if (!name || !email || !password || !phone || !address) {
-      return res.status(500).send({
-        success: false,
-        message: "Please fill all fields",
-      });
-    }
+    
     //existing user
-    const regUser = await UserModel.findById(uid);
+    const regUser = await UserModel.findById(id);
 
     //password validation
     const hashedPassword = (await password)
@@ -90,7 +83,7 @@ export const updateUserController = async (req, res) => {
 
     //update and save the user details
     const user = await UserModel.findByIdAndUpdate(
-      uid,
+      id,
       {
         name: name || regUser.name,
         email: email || reg.email,
