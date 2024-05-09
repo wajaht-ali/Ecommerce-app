@@ -16,8 +16,8 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`/api/v1/auth/register`, {name, email, phone, address, password});
-            if(res.data.success) {
+            const res = await axios.post(`/api/v1/auth/register`, { name, email, phone, address, password });
+            if (res.data.success) {
                 toast.success(res.data.message);
                 navigate("/login");
             }
@@ -31,7 +31,7 @@ const Register = () => {
 
     return (
         <Layout>
-            <div className='h-screen text-black mx-auto flex items-center justify-center'>
+            <div className='h-screen text-black mx-auto flex flex-col items-center justify-center'>
                 <div className='rounded-md mx-auto border-2 border-white p-4 shadow-lg shadow-black'>
                     <div className='my-2'>
                         <h2 className='uppercase font-bold text-2xl font-playfair text-center'>Sign Up</h2>
@@ -65,6 +65,9 @@ const Register = () => {
                         <p className='mb-3'>Already have an account! </p>
                         <Link to="/login" className="bg-blue-500 text-white px-2 p-1 rounded-sm mt-3 hover:border hover:border-blue-600 hover:bg-white hover:text-blue-800">Login Here!</Link>
                     </div>
+                </div>
+                <div className='my-4'>
+                    <p>Visit our <Link to={"/policy"}><code className="underline text-blue-700 hover:no-underline hover:text-black">privacy policy.</code></Link></p>
                 </div>
             </div>
         </Layout>

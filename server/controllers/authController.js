@@ -77,7 +77,7 @@ export const loginController = async (req, res) => {
       });
     }
     //token
-    const token = await jwt.sign({ _id: user._id }, process.env.JWT_Secret, {
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_Secret, {
       expiresIn: "7d",
     });
     res.status(200).send({

@@ -1487,6 +1487,10 @@ video {
   resize: both;
 }
 
+.list-disc{
+  list-style-type: disc;
+}
+
 .appearance-none{
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -2820,6 +2824,10 @@ video {
   font-family: Roboto, sans-serif;
 }
 
+.font-body{
+  font-family: Roboto, sans-serif;
+}
+
 .\!text-\[11px\]{
   font-size: 11px !important;
 }
@@ -3293,6 +3301,10 @@ video {
 .text-yellow-900{
   --tw-text-opacity: 1;
   color: rgb(245 127 23 / var(--tw-text-opacity));
+}
+
+.underline{
+  text-decoration-line: underline;
 }
 
 .antialiased{
@@ -4900,6 +4912,10 @@ video {
 .hover\:text-white:hover{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:no-underline:hover{
+  text-decoration-line: none;
 }
 
 .hover\:opacity-75:hover{
