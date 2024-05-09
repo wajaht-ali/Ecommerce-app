@@ -43,7 +43,7 @@ const CreateProduct = () => {
             formdata.append("photo", photo);
 
             const res = await axios.post(`/api/v1/product/create-product`, formdata);
-            console.log(res)
+            // console.log(res)
             if (res.data.success) {
                 alert("Product create sucessfully.");
                 navigate('/dashboard/admin/products')

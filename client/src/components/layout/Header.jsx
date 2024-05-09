@@ -69,7 +69,7 @@ const Header = () => {
       <div className="right flex flex-row items-center md:border-l-2 border-gray-800">
         <div className='sig_in mx-2 md:m-0'>
           {
-            !auth.user ? (
+            !auth?.user ? (
               <div>
                 <Link to="/login" className='flex flex-row items-center px-2 py-2'>
                   <FaUser className='mx-3' size={15} />
