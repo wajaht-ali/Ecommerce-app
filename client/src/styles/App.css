@@ -1487,10 +1487,6 @@ video {
   resize: both;
 }
 
-.list-disc{
-  list-style-type: disc;
-}
-
 .appearance-none{
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -2821,10 +2817,6 @@ video {
 }
 
 .font-sans{
-  font-family: Roboto, sans-serif;
-}
-
-.font-body{
   font-family: Roboto, sans-serif;
 }
 
