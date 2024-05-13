@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import AdminMenu from '../../components/layout/AdminMenu'
 import axios from 'axios';
+import SearchInput from '../SearchInput';
 import { Link } from 'react-router-dom';
 import {
     Card,
@@ -58,6 +59,9 @@ const Products = () => {
                 </div>
                 <div className='border w-full h-auto'>
                     <h2 className='text-xl md:text-3xl px-4 py-4 font-semibold select-none text-start'>All Products</h2>
+                    <div className='w-full flex justify-center items-center p-2'>
+                        <SearchInput />
+                    </div>
                     <div className='py-2'>
                         <div className=' flex flex-col md:flex-row items-center justify-around gap-5 flex-wrap'>
                             {products.map((item) => (
