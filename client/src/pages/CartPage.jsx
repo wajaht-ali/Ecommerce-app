@@ -11,6 +11,7 @@ import {
     Typography,
     Button,
 } from "@material-tailwind/react";
+import axios from 'axios';
 
 const CartPage = () => {
     const [auth, setAuth] = useAuth();
@@ -36,6 +37,19 @@ const CartPage = () => {
         } catch (error) {
             console.log(`error with price ${error}`);
         }
+    }
+
+    const handleCheckout = async (e) => {
+        // try {
+        //     e.preventDefault();
+        //     console.log('test')
+        //     const res = await axios.post("/api/v1/misc/create-checkout-session", {  });
+
+        //     console.log(res)
+
+        // } catch (error) {
+        //     console.log(`Error in checkout ${error}`);
+        // }
     }
     return (
         <Layout>
@@ -71,6 +85,7 @@ const CartPage = () => {
                         <hr />
                         <p>Total: ${totalPrice()}</p>
                         <p>Current Address: ${auth?.user?.address}</p>
+                        <button onClick={handleCheckout}>Checkout</button>
                     </div>
                 </div>
             </div>
