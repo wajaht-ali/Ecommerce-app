@@ -37,35 +37,35 @@ export const newsletterController = async (req, res) => {
     });
   }
 };
-export const stripeController = async (req, res) => {
+// export const stripeController = async (req, res) => {
 
-  console.log('testing')
-  try {
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          price: price_1PGwF0LYw4GrqE6YHg8jCV1X,
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `http://localhost:5173/?success=true`,
-      cancel_url: `http://localhost:5173/?canceled=true`,
-    });
+//   console.log('testing')
+//   try {
+//     const session = await stripe.checkout.sessions.create({
+//       line_items: [
+//         {
+//           // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+//           price: price_1PGwF0LYw4GrqE6YHg8jCV1X,
+//           quantity: 1,
+//         },
+//       ],
+//       mode: 'payment',
+//       success_url: `http://localhost:5173/?success=true`,
+//       cancel_url: `http://localhost:5173/?canceled=true`,
+//     });
 
-    console.log(session, 'session')
+//     console.log(session, 'session')
   
-    return res.status(201).send({
-      message: 'Success'
-    })
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send({
-      message: 'error',
-      error: error
-    })
-    // console.log('error in payment ', error)
-  }
+//     return res.status(201).send({
+//       message: 'Success'
+//     })
+//   } catch (error) {
+//     console.log(error)
+//     return res.status(500).send({
+//       message: 'error',
+//       error: error
+//     })
+//     // console.log('error in payment ', error)
+//   }
   
-}
+// }
