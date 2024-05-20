@@ -8,9 +8,10 @@ export const askController = async (req, res) => {
 
     const result = await model.generateContent(prompt);
     const response = result.response;
-    //structure validation
-    const responseText = response.message.candidates[0].content.parts[0].text;
-    return res.status(201).send({ success: true, message: response, text: responseText });
+    const text = response.text();
+    return res
+      .status(201)
+      .send({ success: true, text: text });
   } catch (error) {
     console.log(`Error with ask ${error}`);
     res.status(404).send({
