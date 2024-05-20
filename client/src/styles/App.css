@@ -1352,6 +1352,10 @@ video {
   max-width: 1140px;
 }
 
+.max-w-\[500px\]{
+  max-width: 500px;
+}
+
 .flex-none{
   flex: none;
 }
@@ -4865,6 +4869,11 @@ video {
 
 .hover\:bg-yellow-500\/10:hover{
   background-color: rgb(255 235 59 / 0.1);
+}
+
+.hover\:bg-indigo-300:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(121 134 203 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-opacity-80:hover{

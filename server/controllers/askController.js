@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export const askController = async (req, res) => {
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const prompt = req.body.message;
+    const prompt = req.body.prompt;
 
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
