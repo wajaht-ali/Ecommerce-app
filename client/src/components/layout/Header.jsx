@@ -39,9 +39,9 @@ const Header = () => {
           <li>
             <Link className='border-[#FA6400] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/products">Products</Link>
           </li>
-          {/* <li>
-            <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/category">Category</Link>
-          </li> */}
+          <li>
+            <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/ask">Chat</Link>
+          </li>
           {/* <li>
             <Link className='border-[#FF4C98] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
           </li> */}
@@ -60,9 +60,9 @@ const Header = () => {
           <li>
             <Link onClick={handleClick} className='border-[#149EDC] hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/category">Category</Link>
           </li>
-          {/* <li>
-            <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/contact">Contact</Link>
-          </li> */}
+          <li>
+            <Link onClick={handleClick} className='border-blue-400 hover:border-b py-2 mx-4 font-semibold text-sm transition-all' to="/ask">Chat</Link>
+          </li>
         </ul>
       </div>
 
