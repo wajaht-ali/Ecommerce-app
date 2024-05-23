@@ -5,6 +5,6 @@ import { requireSignIn } from "../middlewares/authMiddleware.js";
 requireSignIn;
 const router = express.Router();
 
-router.post("/", requireSignIn, askController);
+router.post("/", askController);
 
 export { router as askRouter };
