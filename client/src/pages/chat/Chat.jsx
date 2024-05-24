@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { LuSendHorizonal } from "react-icons/lu";
+import { FaBars } from "react-icons/fa";
 import Layout from '../../components/layout/Layout'
 import axios from 'axios';
-
+import Sidebar from "../../components/Sidebar.jsx";
 const Chat = () => {
     const [prompt, setPrompt] = useState("");
     const [result, setResult] = useState("");
@@ -12,11 +13,11 @@ const Chat = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            const res = await axios.post("api/v1/ask/", {prompt});
-            if(res.data.success) {
+            const res = await axios.post("api/v1/ask/", { prompt });
+            if (res.data.success) {
                 setResult(res.data.text);
             }
-            
+
             else {
                 alert(res.data.message);
             }
@@ -26,7 +27,7 @@ const Chat = () => {
     }
     return (
         <Layout>
-            <div className="w-full flex flex-col items-center justify-center p-4">
+            <div className="w-full p-4">
                 <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">
                     <h1>Google Gemini Chatbot</h1>
                 </div>
@@ -38,6 +39,7 @@ const Chat = () => {
                     <p className="text-lg">{result}</p>
                 </div>
             </div>
+
         </Layout>
     )
 }
