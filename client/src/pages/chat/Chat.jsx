@@ -28,7 +28,7 @@ const Chat = () => {
     return (
         <Layout>
             <div className="w-full p-4">
-                <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">
+                {/* <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">
                     <h1>Google Gemini Chatbot</h1>
                 </div>
                 <div className="w-full flex flex-col items-center justify-center border border-2-black">
@@ -37,7 +37,8 @@ const Chat = () => {
                         <button className="bg-indigo-500 text-white hover:bg-indigo-300 p-3 rounded-md" onClick={handleSubmit}><LuSendHorizonal /></button>
                     </form>
                     <p className="text-lg">{result}</p>
-                </div>
+                </div> */}
+                <Sidebar />
             </div>
 
         </Layout>
