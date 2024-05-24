@@ -7,6 +7,8 @@ import axios from 'axios';
 const Chat = () => {
     const [prompt, setPrompt] = useState("");
     const [result, setResult] = useState("");
+    // const [auth, setAuth] = useState();
+
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
@@ -14,6 +16,7 @@ const Chat = () => {
             if(res.data.success) {
                 setResult(res.data.text);
             }
+            
             else {
                 alert(res.data.message);
             }
