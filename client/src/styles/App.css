@@ -550,10 +550,6 @@ video {
   pointer-events: none;
 }
 
-.fixed{
-  position: fixed;
-}
-
 .absolute{
   position: absolute;
 }
@@ -599,10 +595,6 @@ video {
   top: 3.5rem;
 }
 
-.top-96{
-  top: 24rem;
-}
-
 .z-10{
   z-index: 10;
 }
@@ -613,6 +605,10 @@ video {
 
 .z-50{
   z-index: 50;
+}
+
+.col-span-12{
+  grid-column: span 12 / span 12;
 }
 
 .col-span-2{
@@ -719,6 +715,46 @@ video {
 
 .mt-px{
   margin-top: 1px;
+}
+
+.ml-2{
+  margin-left: 0.5rem;
+}
+
+.mr-2{
+  margin-right: 0.5rem;
+}
+
+.-mr-24{
+  margin-right: -6rem;
+}
+
+.-ml-24{
+  margin-left: -6rem;
+}
+
+.-mr-10{
+  margin-right: -2.5rem;
+}
+
+.-mr-8{
+  margin-right: -2rem;
+}
+
+.-mr-6{
+  margin-right: -1.5rem;
+}
+
+.-ml-6{
+  margin-left: -1.5rem;
+}
+
+.-ml-16{
+  margin-left: -4rem;
+}
+
+.-ml-2{
+  margin-left: -0.5rem;
 }
 
 .box-border{
@@ -829,6 +865,10 @@ video {
   width: 150px;
 }
 
+.w-\[30\%\]{
+  width: 30%;
+}
+
 .w-\[400px\]{
   width: 400px;
 }
@@ -849,8 +889,8 @@ video {
   width: 100%;
 }
 
-.w-\[30\%\]{
-  width: 30%;
+.min-w-\[200px\]{
+  min-width: 200px;
 }
 
 .max-w-\[500px\]{
@@ -922,6 +962,10 @@ video {
 
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-12{
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 .flex-row{
@@ -1777,16 +1821,16 @@ video {
 }
 
 @media (min-width: 720px){
-  .md\:visible{
-    visibility: visible;
-  }
-
   .md\:col-span-2{
     grid-column: span 2 / span 2;
   }
 
-  .md\:col-span-1{
-    grid-column: span 1 / span 1;
+  .md\:col-span-10{
+    grid-column: span 10 / span 10;
+  }
+
+  .md\:col-span-8{
+    grid-column: span 8 / span 8;
   }
 
   .md\:m-0{
@@ -1814,6 +1858,10 @@ video {
     margin-top: 0px;
   }
 
+  .md\:ml-0{
+    margin-left: 0px;
+  }
+
   .md\:block{
     display: block;
   }
@@ -1834,16 +1882,24 @@ video {
     width: 400px;
   }
 
-  .md\:w-auto{
-    width: auto;
-  }
-
   .md\:w-\[70\%\]{
     width: 70%;
   }
 
+  .md\:w-auto{
+    width: auto;
+  }
+
   .md\:min-w-\[200px\]{
     min-width: 200px;
+  }
+
+  .md\:min-w-\[250px\]{
+    min-width: 250px;
+  }
+
+  .md\:min-w-\[300px\]{
+    min-width: 300px;
   }
 
   .md\:max-w-\[50\%\]{

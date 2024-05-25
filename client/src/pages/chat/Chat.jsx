@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { LuSendHorizonal } from "react-icons/lu";
-import { FaBars } from "react-icons/fa";
+import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import Layout from '../../components/layout/Layout'
 import axios from 'axios';
 import Sidebar from "../../components/Sidebar.jsx";
@@ -25,11 +25,14 @@ const Chat = () => {
     }
     return (
         <Layout>
-            <div className="w-full grid grid-cols-2 gap-4 items-center p-4">
-                <div className="hidden md:block w-[30%] border border-black">
+            <div className="w-full flex flex-row items-start p-4">
+                <div className="-ml-2 md:block md:min-w-[250px] md:mr-2 md:ml-0 border border-black">
                     <Sidebar />
                 </div>
-                <div className="border border-black w-full md:w-[70%]">
+                <div className="md:hidden absolute">
+                    <HiMiniBars3BottomLeft size={25} />
+                </div>
+                <div className="border border-black w-full">
                     <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">
                         <h1>Google Gemini Chatbot</h1>
                     </div>

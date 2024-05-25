@@ -113,7 +113,7 @@ const Sidebar = () => {
     return (
         <>
             <nav
-                className="hidden md:block top-100 left-0 w-full h-full border-r bg-white space-y-8 sm:w-80">
+                className="hidden md:block top-100 left-0 w-full h-full border-r bg-white space-y-8">
                 <div className="flex flex-col h-full px-4">
                     <div className='h-20 flex items-center pl-2'>
                         <div className="w-full flex items-center gap-x-4">
