@@ -2,12 +2,16 @@
 import React, { useState } from 'react'
 import { LuSendHorizonal } from "react-icons/lu";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
+import { IoMdClose } from "react-icons/io";
 import Layout from '../../components/layout/Layout'
 import axios from 'axios';
 import Sidebar from "../../components/Sidebar.jsx";
+import "../../index.css";
+
 const Chat = () => {
     const [prompt, setPrompt] = useState("");
     const [result, setResult] = useState("");
+    const [isSideBar, setIsSideBar] = useState(false);
 
     const handleSubmit = async (e) => {
         try {
@@ -23,14 +27,18 @@ const Chat = () => {
             console.log(`Error with prompt sending ${error}`);
         }
     }
+    const handleSidebar = () => {
+        setIsSideBar(!isSideBar);
+    }
+
     return (
         <Layout>
             <div className="w-full flex flex-row items-start p-4">
-                <div className="-ml-2 md:block md:min-w-[250px] md:mr-2 md:ml-0 border border-black">
+                <div className={`sidebar md:block ${isSideBar ? 'active' : ''}`}>
                     <Sidebar />
                 </div>
-                <div className="md:hidden absolute">
-                    <HiMiniBars3BottomLeft size={25} />
+                <div onClick={handleSidebar} className="md:hidden absolute">
+                    {isSideBar ? <IoMdClose size={25} /> : <HiMiniBars3BottomLeft size={25} />}
                 </div>
                 <div className="border border-black w-full">
                     <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">

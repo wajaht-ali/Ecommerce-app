@@ -36,7 +36,6 @@ const UpdateProduct = () => {
     const getProductById = async () => {
         try {
             const res = await axios.get(`/api/v1/product/get-product/${slug}`);
-            // console.log(res);
             if (res.data.success) {
                 setName(res.data.product.name);
                 setDescription(res.data.product.description);
@@ -44,7 +43,6 @@ const UpdateProduct = () => {
                 setPrice(res.data.product.price);
                 setCategory(res.data.product.category);
                 setShipping(res.data.product.shipping);
-                // setPhoto(res.data.product._id)
                 setId(res.data.product._id)
             }
             else {
