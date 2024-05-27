@@ -1,5 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PromptModel } from "../models/prompts.js";
+
+//generate text
 export const askController = async (req, res) => {
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -13,7 +15,7 @@ export const askController = async (req, res) => {
 
     //saving to the database
     const save = new PromptModel({
-      title: req.prompt,
+      title: prompt,
       prompt: text,
       user: id,
     }).save();
@@ -26,5 +28,25 @@ export const askController = async (req, res) => {
       message: "Error with ask controller",
       error,
     });
+  }
+};
+
+//get all prompts
+export const getAllPromptsController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const prompts = await PromptModel.find({ user: id });
+    return res.status(201).send({
+      success: true,
+      message: "All prompts fetched",
+      prompts,
+    });
+  } catch (error) {
+    res.status(404).send({
+      success: false,
+      message: "Error with prompts controller",
+      error,
+    });
+    console.log(`Error with getting all prompts ${error}`);
   }
 };

@@ -19,6 +19,7 @@ const Chat = () => {
             const res = await axios.post("api/v1/ask/", { prompt });
             if (res.data.success) {
                 setResult(res.data.text);
+                setPrompt("");
             }
             else {
                 alert(res.data.message);
@@ -46,7 +47,7 @@ const Chat = () => {
                     </div>
                     <div className="w-full flex flex-col items-center justify-center border border-2-black">
                         <form className='max-w-[500px] p-3 flex flex-row items-center' onSubmit={handleSubmit}>
-                            <input type="text" className="border rounded-md gap-4 mr-4 p-2 border-gray-300" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' />
+                            <input type="text" className="border rounded-md gap-4 mr-4 p-2 border-gray-300" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' value={prompt}/>
                             <button className="bg-indigo-500 text-white hover:bg-indigo-300 p-3 rounded-md" onClick={handleSubmit}><LuSendHorizonal /></button>
                         </form>
                         <p className="text-lg">{result}</p>
