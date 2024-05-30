@@ -137,14 +137,19 @@ If you have any questions or need help, feel free to reach out to me at contact.
 ## 📷 Screenshots
 
 - Home Page
-  ![Home Page](./client/src/assets/card%20pics/Home%20page.png)
+  ![Home Page](./client/src/assets/photos/home.png)
 
-- Sign Up page
-  ![Sign Page](./client/src/assets/card%20pics/Sign_up.png)
+- Products Page
+  ![Home Page](./client/src/assets/photos/all_products.png)
 
-- Login page
-  ![Login Page](./client/src/assets/card%20pics/login.png)
+- Admin Dashbaord
+  ![Home Page](./client/src/assets/photos/admin_dashbaord.png)
 
+- User Dashbaord
+  ![Home Page](./client/src/assets/photos/user_dashbaord.png)
+
+- Shopping Cart
+![Home Page](./client/src/assets/photos/cart.png)
 ## ⚠️ Note
 
 - This Application is still under development, some important features are still being developed and tested locally, once it's clear I'll push them asap.
