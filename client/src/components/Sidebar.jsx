@@ -16,7 +16,8 @@ const Sidebar = () => {
             }
             else {
                 const res = await axios.get(`/api/v1/ask/fetch-prompts/${id}`);
-                if (res.data.success) {
+                //conditional rendring for the data from prompts data input
+                if (res?.data?.success) {
                     setResult(res.data.prompts);
                     alert("All prompts fetched!");
                 }
@@ -40,7 +41,7 @@ const Sidebar = () => {
                     <div className="overflow-auto">
                         {
                                 result.map(item => (
-                                    <div key={item._id}>{item.title}</div>
+                                    <div className="my-1 hover:bg-gray-200 rounded-md py-2 font-poppins text-lg" key={item._id}>{item.title}</div>
                                 ))
                         }
                     </div >
