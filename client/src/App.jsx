@@ -25,6 +25,7 @@ import ProductDetails from "./pages/ProductDetails.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import UpdateUser from "./pages/Admin/UpdateUser.jsx";
 import Chat from "./pages/chat/Chat.jsx";
+import ChatFile from "./pages/chat/ChatFile.jsx";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path='/products' element={<AllProducts />} />
-      <Route path="/ask" element={<Chat />} />
+      <Route path="/chat" element={<Chat />} />
+      <Route path="/chat/c/:id" element={<ChatFile />} />
       {/* User Dashboard */}
       <Route path='/dashboard' element={<PrivateRoute />} >
         <Route path='user' element={<Dashboard />} />

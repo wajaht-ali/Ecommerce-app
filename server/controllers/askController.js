@@ -50,3 +50,23 @@ export const getAllPromptsController = async (req, res) => {
     console.log(`Error with getting all prompts ${error}`);
   }
 };
+
+//get prompt by id
+export const getPromptById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const prompt = await PromptModel.findById(id);
+    return res.status(201).send({
+      success: true,
+      message: "Prompt fetched by id successfully!",
+      prompt,
+    });
+  } catch (error) {
+    console.log(`Error with single prompt fetching ${error}`);
+    return res.status(404).send({
+      success: false,
+      message: "Error with single prompt fetching",
+      error,
+    });
+  }
+};

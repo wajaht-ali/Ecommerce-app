@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LuSendHorizonal } from "react-icons/lu";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { IoMdClose } from "react-icons/io";
@@ -7,12 +7,27 @@ import Layout from '../../components/layout/Layout'
 import axios from 'axios';
 import Sidebar from "../../components/Sidebar.jsx";
 import "../../index.css";
+import { useParams } from 'react-router-dom';
 
-const Chat = () => {
+const ChatFile = () => {
     const [prompt, setPrompt] = useState("");
     const [result, setResult] = useState("");
     const [isSideBar, setIsSideBar] = useState(false);
+    const { id } = useParams();
 
+    const fetchPrompt = async (id) => {
+        try {
+            const res = await axios.get(`/api/v1/ask/c/${id}`);
+            if (res.data.success) {
+                setResult(res.data.prompt.prompt);
+            }
+            else {
+                alert(res.data.message);
+            }
+        } catch (error) {
+            console.log(`Error with the prompt fetching ${error}`);
+        }
+    }
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
@@ -31,6 +46,9 @@ const Chat = () => {
     const handleSidebar = () => {
         setIsSideBar(!isSideBar);
     }
+    useEffect(() => {
+        fetchPrompt(id);
+    }, [id])
 
     return (
         <Layout>
@@ -41,16 +59,16 @@ const Chat = () => {
                 <div onClick={handleSidebar} className="md:hidden absolute">
                     {isSideBar ? <IoMdClose size={25} /> : <HiMiniBars3BottomLeft size={25} />}
                 </div>
-                <div className="shadow-lg shadow-gray-600 rounded-xl w-full">
+                <div className="border border-black w-full">
                     <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">
-                        <h1>Google Gemini Chatbot</h1>
+                        <h1 className="font-bold text-lg">Google Gemini Chatbot</h1>
                     </div>
+                    <p className="text-lg my-4 p-4 text-start">{result}</p>
                     <div className="w-full flex flex-col items-center justify-center border border-2-black">
-                        <form className='w-full p-3 flex flex-row items-center justify-center' onSubmit={handleSubmit}>
-                            <input type="text" className="border w-full rounded-md gap-4 mr-4 p-2 border-gray-500" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' value={prompt}/>
+                        <form className='p-3 flex flex-row items-center' onSubmit={handleSubmit}>
+                            <input type="text" className="border w-full rounded-xl gap-4 mr-4 p-4 border-gray-500" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' value={prompt} />
                             <button className="bg-indigo-500 text-white hover:bg-indigo-300 p-3 rounded-md" onClick={handleSubmit}><LuSendHorizonal /></button>
                         </form>
-                        <p className="text-lg">{result}</p>
                     </div>
                 </div>
             </div>
@@ -59,4 +77,4 @@ const Chat = () => {
     )
 }
 
-export default Chat
+export default ChatFile

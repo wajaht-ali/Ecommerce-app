@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/Auth.jsx";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
     const [auth, setAuth] = useAuth();
@@ -16,10 +17,8 @@ const Sidebar = () => {
             }
             else {
                 const res = await axios.get(`/api/v1/ask/fetch-prompts/${id}`);
-                //conditional rendring for the data from prompts data input
                 if (res?.data?.success) {
                     setResult(res.data.prompts);
-                    alert("All prompts fetched!");
                 }
                 else {
                     alert(res.data.message);
@@ -40,9 +39,11 @@ const Sidebar = () => {
                 <div className="flex flex-col h-full px-4">
                     <div className="overflow-auto">
                         {
-                                result.map(item => (
-                                    <div className="my-1 hover:bg-gray-200 rounded-md py-2 font-poppins text-lg" key={item._id}>{item.title}</div>
-                                ))
+                            result.map(item => (
+                                <NavLink key={item._id} to={`/chat/c/${item._id}`}>
+                                    <div className="my-1 hover:bg-gray-200 rounded-md py-2 font-poppins text-lg" >{item.title}</div>
+                                </NavLink>
+                            ))
                         }
                     </div >
                 </div>
