@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import "../../index.css";
+import axios from 'axios';
+import { IoMdClose } from "react-icons/io";
+import { useParams } from 'react-router-dom';
 import { LuSendHorizonal } from "react-icons/lu";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
-import { IoMdClose } from "react-icons/io";
+import React, { useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
-import axios from 'axios';
 import Sidebar from "../../components/Sidebar.jsx";
-import "../../index.css";
-import { useParams } from 'react-router-dom';
+import Markdown from 'react-markdown';
 
 const ChatFile = () => {
     const [prompt, setPrompt] = useState("");
@@ -63,7 +64,9 @@ const ChatFile = () => {
                     <div className="w-full text-black text-center font-bold text-lg p-3 font-poppins">
                         <h1 className="font-bold text-lg">Google Gemini Chatbot</h1>
                     </div>
-                    <p className="text-lg my-4 p-4 text-start">{result}</p>
+                    <p className="text-lg my-4 p-4 text-start">
+                        <Markdown>{result}</Markdown>
+                    </p>
                     <div className="w-full flex flex-col items-center justify-center border border-2-black">
                         <form className='p-3 flex flex-row items-center' onSubmit={handleSubmit}>
                             <input type="text" className="border w-full rounded-xl gap-4 mr-4 p-4 border-gray-500" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' value={prompt} />

@@ -40,7 +40,7 @@ const Sidebar = () => {
                     <div className="overflow-auto">
                         {
                             result.map(item => (
-                                <NavLink key={item._id} to={`/chat/c/${item._id}`}>
+                                <NavLink  key={item._id} to={`/chat/c/${item._id}`}>
                                     <div className="my-1 hover:bg-gray-200 rounded-md py-2 font-poppins text-lg" >{item.title}</div>
                                 </NavLink>
                             ))
