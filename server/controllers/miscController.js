@@ -76,11 +76,9 @@ export const newsletterController = async (req, res) => {
 
 export const paymentController = async (req, res) => {
   try {
-    const { items } = req.body;
-
-    const entriesArray = Object.entries(items);
-
-    const lineItems = entriesArray.map((item) => ({
+    const cartItems = req.body.cartItems;
+    // console.log("your items: ", cartItems);
+    const lineItems = cartItems.map((item) => ({
       price_data: {
         currency: "usd",
         product_data: {
@@ -103,7 +101,7 @@ export const paymentController = async (req, res) => {
   } catch (error) {
     // Log the error and the request body for debugging
     console.error(`Error with payment gateway: ${error.message}`);
-    console.error("Request body at error:", req.body);
+    // console.error("Request body at error:", req.body);
 
     res.status(500).json({ error: "An error occurred" });
   }

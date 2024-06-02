@@ -3,5 +3,7 @@ import { newsletterController, paymentController } from "../controllers/miscCont
 
 const router = express.Router();
 router.post("/newsletter", newsletterController);
+
+//payment router
 router.post('/create-checkout-session', paymentController);
 export { router as miscRouter };
