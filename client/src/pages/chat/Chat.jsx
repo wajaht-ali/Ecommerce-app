@@ -7,6 +7,7 @@ import Layout from '../../components/layout/Layout'
 import axios from 'axios';
 import Sidebar from "../../components/Sidebar.jsx";
 import "../../index.css";
+import Markdown from 'react-markdown';
 
 const Chat = () => {
     const [prompt, setPrompt] = useState("");
@@ -47,10 +48,10 @@ const Chat = () => {
                     </div>
                     <div className="w-full flex flex-col items-center justify-center border border-2-black">
                         <form className='w-full p-3 flex flex-row items-center justify-center' onSubmit={handleSubmit}>
-                            <input type="text" className="border w-full rounded-md gap-4 mr-4 p-2 border-gray-500" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' value={prompt}/>
+                            <input type="text" className="border w-full rounded-md gap-4 mr-4 p-2 border-gray-500" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter text' value={prompt} />
                             <button className="bg-indigo-500 text-white hover:bg-indigo-300 p-3 rounded-md" onClick={handleSubmit}><LuSendHorizonal /></button>
                         </form>
-                        <p className="text-lg">{result}</p>
+                        <p className="text-lg"><Markdown>{result}</Markdown></p>
                     </div>
                 </div>
             </div>

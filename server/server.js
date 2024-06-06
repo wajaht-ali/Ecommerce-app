@@ -29,13 +29,6 @@ app.use(
   })
 );
 
-//stripe customer
-const customer = await stripe.customers.create({
-  email: 'customer@gmail.com',
-});
-
-console.log(customer.id);
-
 //routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoute);
