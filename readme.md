@@ -135,6 +135,8 @@ Contributions are welcome! Please fork the repository and create a pull request 
 If you have any questions or need help, feel free to reach out to me at contact.chwajahat@gmail.com
 
 ## 📷 Screenshots
+- ER Diagram
+  ![ERD](./client/src/assets/photos/ecommerce_erd.png)
 
 - Home Page
   ![Home Page](./client/src/assets/photos/home.png)

@@ -18,7 +18,6 @@ import PrivateRoute from './components/routes/PrivateRoute.jsx';
 import AdminRoute from "../src/components/routes/AdminRoute.jsx";
 import Products from "./pages/Admin/Products.jsx";
 import UpdateProduct from "./pages/Admin/UpdateProduct.jsx";
-// import AllProducts from "./components/Home/Products.jsx";
 import AllProducts from "./pages/Home/Products.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
@@ -28,6 +27,7 @@ import Chat from "./pages/chat/Chat.jsx";
 import ChatFile from "./pages/chat/ChatFile.jsx";
 
 function App() {
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -39,12 +39,14 @@ function App() {
       <Route path='/products' element={<AllProducts />} />
       <Route path="/chat" element={<Chat />} />
       <Route path="/chat/c/:id" element={<ChatFile />} />
+      
       {/* User Dashboard */}
       <Route path='/dashboard' element={<PrivateRoute />} >
         <Route path='user' element={<Dashboard />} />
         <Route path='user/profile' element={<Profile />} />
         <Route path='user/orders' element={<Orders />} />
       </Route>
+      
       {/* Admin Dashboard */}
       <Route path='/dashboard' element={<AdminRoute />}>
         <Route path='admin' element={<AdminDashboard />} />
